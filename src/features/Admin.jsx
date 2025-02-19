@@ -10,17 +10,17 @@ const adminSchema = Yup.object().shape({
   return (
     <div>
    <Formik
-   initialvalues={{
+   initialValues={{
     AdminName: '',
     PassWord: '',
    }}
    validationSchema={adminSchema}
-   onSubmit={values}
+   onSubmit={(val)=>{console.log(val)}}
    >
     <Form>
         <Field type="text" name="AdminName" placeholder="Admin Name"/>
         <Field type="password" name="PassWord" placeholder="PassWord"/>
-        <Button type="submit">Submit</Button>
+        <button type="submit">Submit</button>
     </Form>
    </Formik>
     </div>

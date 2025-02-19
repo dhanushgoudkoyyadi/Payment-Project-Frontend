@@ -16,7 +16,7 @@ function Login() {
                  id="username" 
                  name="username"
                  onChange={(e)=>setUsername(e.target.value)}
-                 value="username"
+                 value={username}
                  placeholder="Enter username"
                  required/>
             </div>

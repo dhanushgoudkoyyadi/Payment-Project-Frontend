@@ -1,6 +1,6 @@
 import React from 'react'
-
-function Signup() {
+import { useState } from 'react';
+function Register() {
     const [username,setUsername]=useState();
     const [password,setPassword]=useState()
   return (
@@ -15,7 +15,7 @@ function Signup() {
              id="username" 
              name="username"
              onChange={(e)=>setUsername(e.target.value)}
-             value="username"
+             value={username}
              placeholder="Enter username"
              required/>
         </div>
@@ -33,7 +33,7 @@ function Signup() {
               />
         </div>
         <button type="submit" className='btn btn-primary'>
-            Login
+            Register
         </button>
 
     </form>
@@ -44,4 +44,4 @@ function Signup() {
 }
 
 
-export default Signup
+export default Register
