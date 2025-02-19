@@ -4,8 +4,9 @@ import { BrowserRouter, Routes, Route ,Router} from "react-router-dom";
 function App() {
   return (
     
-   <>
+   <div>
    <Dashboard/>
+   <Login></Login>
    <Router>
     <Routes>
       <Route path="/" element={<Dashboard/>} />
@@ -14,7 +15,8 @@ function App() {
       <Route path="/Admin" element={<Admin/>} />
     </Routes>
    </Router>
-   </> 
+   </div> 
+   
    
   );
 }
