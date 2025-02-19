@@ -2,11 +2,22 @@ import React from 'react'
 import { useState } from 'react';
 function Register() {
     const [username,setUsername]=useState();
-    const [password,setPassword]=useState()
+    const [password,setPassword]=useState();
+    const [confirmPassword,setConfirmPassword]=useState();
+    const [error,setError]=useState();
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        if(password!==confirmPassword){
+            setError("Passwords do not match!");
+            return;
+        }
+        setError("");
+        console,log({username,password});
+    }
   return (
     <div className='register-container'>
     <form className='register-form'>
-        <h3>Login</h3>
+        <h3>Register</h3>
         <div className='form-group mb-3'>
             <label htmlFor="username">Username</label>
             <input
@@ -31,6 +42,19 @@ function Register() {
              placeholder='Password'
              required
               />
+        </div>
+        <div className='form-group mb-3'>
+            <label htmlFor='confirmPassword'>Confirm Password</label>
+            <input 
+             type="Password"
+             className='form-control'
+             id='confirmPassword'
+             name='confirmPassword'
+             onChange={(e) => setConfirmPassword(e.target.value)}
+             value={confirmPassword}
+             placeholder="Confirm password"
+             required />
+
         </div>
         <button type="submit" className='btn btn-primary'>
             Register
