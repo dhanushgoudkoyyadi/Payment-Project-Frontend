@@ -47,8 +47,7 @@ export const PaymentApi = createApi({
 });
 
 export const {
-//   useAddMutation,
-//   useGetQuery,  // ✅ Changed from `useGetMutation` to `useGetQuery`
+  useAddMutation,
   useLoginMutation,
   useSignupMutation
 } = PaymentApi;
