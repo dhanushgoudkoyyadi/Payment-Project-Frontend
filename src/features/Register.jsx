@@ -17,6 +17,7 @@ function Register() {
         try{
             const response = await register({username,password})
             localStorage.setItem('token',response.token);
+
             navigate('/Mainboard')
         }
         catch(err)

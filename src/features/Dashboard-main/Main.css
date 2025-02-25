@@ -1,0 +1,24 @@
+*{
+    padding: 0px;
+    margin:0px;
+}
+
+.heading{
+    color: blue;
+    font-size: 70px;
+    font-weight: 500;
+}
+
+.para{
+    color: grey;
+    font-size: 20px;
+    font-weight: 500;
+
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0%;
+}

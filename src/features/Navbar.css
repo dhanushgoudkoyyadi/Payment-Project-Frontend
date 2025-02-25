@@ -1,0 +1,11 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.Navbar{
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}

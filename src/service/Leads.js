@@ -30,13 +30,13 @@ export const PaymentApi = createApi({
       })
     }),
 
-    // add: build.mutation({
-    //   query: ({ formData }) => ({
-    //     url: `/add/file`,
-    //     method: 'POST',
-    //     body: formData,
-    //   }),
-    // }),
+    add: build.mutation({
+      query: ({ formData }) => ({
+        url: `/payment/add/file`,
+        method: 'POST',
+        body: formData,
+      }),
+    }),
 
     // get: build.query({  // ✅ Changed from mutation to query since it's a GET request
     //   query: () => ({
