@@ -1,5 +1,5 @@
 import React from 'react'
-import StudentPayment from '../features/StudentPayment'
+import StudentPayment from './StudentPayment'
 
 function Mainboard() {
   return (

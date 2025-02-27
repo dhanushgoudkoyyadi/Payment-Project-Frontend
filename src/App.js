@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Dashboard from './features/Dashboard';
-import Register from "./features/Register";
-import Login from "./features/Login";
-import Admin from "./features/Admin";
-import Mainboard from './features/Mainboard';
-import Adminboard from './features/Adminboard';
+import Dashboard from './features/Dashboard-main/Dashboard';
+import Login from "./features/Authentication/Login";
+import Admin from "./features/Admin/Admin";
+import Mainboard from './features/Student-Details/Mainboard';
+import Adminboard from './features/Admin/Adminboard';
+import Register from "./features/Authentication/Register";
 
 function App() {
   return (
