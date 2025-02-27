@@ -1,17 +1,21 @@
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
-
+import './Login.css';
 import { useLoginMutation } from "../service/Leads";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword,setConfirmPassword]=useState("");
   const [login, { isLoading, error }] =useLoginMutation()
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(password!==confirmPassword){
+      alert("Passwords do not match.Please try again");
+    }
     try {
       const response = await login({ username, password }).unwrap();
       localStorage.setItem("token", response.token);
@@ -47,6 +51,16 @@ const Login = () => {
               required
               className="form-input"
             />
+          </div>
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input 
+              id="confirmPassword"
+              type="password"
+              value={confirmPassword}
+              onChange={(e)=>setConfirmPassword(e.target.value)}
+              required
+              className="form-input" />
           </div>
           <button type="submit" disabled={isLoading} className="login-button btn btn-success">
             {isLoading ? "Logging in..." : "Login"}

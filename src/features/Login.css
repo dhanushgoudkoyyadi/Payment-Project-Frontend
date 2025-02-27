@@ -1,0 +1,71 @@
+/* Apply background to the whole login container */
+.login-container {
+    background-color: #e8f5e9; /* Mint green */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Login Card */
+.login-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+/* Title Styling */
+.login-title {
+    color: #2c3e50; /* Dark blue */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Labels - Dark */
+.form-group label {
+    color: #333;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Form Inputs */
+.form-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Login Button */
+.login-button {
+    background-color: #28a745; /* Success green */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.login-button:hover {
+    background-color: #218838;
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
