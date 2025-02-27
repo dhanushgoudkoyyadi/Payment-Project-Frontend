@@ -1,83 +1,60 @@
-import React from 'react'
-import { useState } from 'react';
-import { useSignupMutation } from '../service/Leads';
+import React from "react";
 import { useNavigate } from 'react-router-dom';
+
+import { useSignupMutation } from "../service/Leads";
+
 function Register() {
-    const [username, setUsername] = useState();
-    const [password, setPassword] = useState();
-    const [confirmPassword, setConfirmPassword] = useState();
-    const [register] = useSignupMutation();
-    const navigate = useNavigate();
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (password !== confirmPassword) {
-            alert("Passwords do not match!");
-            return;
-        }
-        try{
-            const response = await register({username,password})
-            localStorage.setItem('token',response.token);
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [signup, { isLoading }] = useSignupMutation()
+  const navigate = useNavigate();
 
-            navigate('/Mainboard')
-        }
-        catch(err)
-        {
-            alert("Register Failed.. Please try again...")
-        }
-        
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await signup({ username, password }).unwrap();
+      localStorage.setItem('token', response.token);
+      alert('Signup successful!');
+      navigate('/Mainboard');
+    } catch (err) {
+      alert('Signup failed. Please try again.');
     }
-    return (
-        <div className='register-container'>
-            <form className='register-form' onSubmit={handleSubmit}>
-                <h3>Register</h3>
-                <div className='form-group mb-3'>
-                    <label htmlFor="username">Username</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="username"
-                        name="username"
-                        onChange={(e) => setUsername(e.target.value)}
-                        value={username}
-                        placeholder="Enter username"
-                        required />
-                </div>
-                <div className='form-group mb-3'>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        className='form-control'
-                        id='password'
-                        name='password'
-                        onChange={(e) => setPassword(e.target.value)}
-                        value={password}
-                        placeholder='Password'
-                        required
-                    />
-                </div>
-                <div className='form-group mb-3'>
-                    <label htmlFor='confirmPassword'>Confirm Password</label>
-                    <input
-                        type="Password"
-                        className='form-control'
-                        id='confirmPassword'
-                        name='confirmPassword'
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        value={confirmPassword}
-                        placeholder="Confirm password"
-                        required />
+  };
 
-                </div>
-                <button type="submit" className='btn btn-primary'>
-                    Register
-                </button>
-
-            </form>
-
-        </div>
-
-    )
+  return (
+    <div className="signup-container">
+      <div className="signup-card">
+        <h1 className="signup-title">Create Your Account</h1>
+        <form onSubmit={handleSubmit} className="signup-form">
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              id="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              className="form-input"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="form-input"
+            />
+          </div>
+          <button type="submit" disabled={isLoading} className="signup-button btn btn-warning">
+            {isLoading ? "Signing up..." : "Signup"}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
 
-
-export default Register
+export default Register;

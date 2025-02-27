@@ -4,9 +4,8 @@ export const PaymentApi = createApi({
   reducerPath: 'paymentapi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:5555/',
-    prepareHeaders: (headers, { getState }) => {
+    prepareHeaders: (headers) => {
       const token = localStorage.getItem('token');
-
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
       }
@@ -16,7 +15,7 @@ export const PaymentApi = createApi({
   endpoints: (build) => ({
     signup: build.mutation({
       query: (credentials) => ({
-        url: '/signup/register',
+        url: '/register',
         method: 'POST',
         body: credentials
       })
@@ -24,25 +23,20 @@ export const PaymentApi = createApi({
 
     login: build.mutation({
       query: (credentials) => ({
-        url: '/signup/login',
+        url: '/login',
         method: 'POST',
         body: credentials
       })
     }),
 
     add: build.mutation({
-      query: ({ formData }) => ({
-        url: `/payment/add/file`,
+      query: (formData) => ({
+        url: '/details',
         method: 'POST',
         body: formData,
+        formData: true, // Ensure correct handling of multipart form data
       }),
     }),
-
-    // get: build.query({  // ✅ Changed from mutation to query since it's a GET request
-    //   query: () => ({
-    //     url: `/getfile`,
-    //   }),
-    // }),
   }),
 });
 

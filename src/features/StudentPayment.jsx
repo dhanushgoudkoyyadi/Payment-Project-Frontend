@@ -1,139 +1,71 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { useAddMutation } from "../service/Leads";
-import { jwtDecode } from "jwt-decode"; // Correct import
+import React, { useState } from 'react';
+import { useAddMutation } from '../service/Leads';
+import { jwtDecode } from 'jwt-decode';
 
-function StudentPayment() {
-  const studentSchema = Yup.object().shape({
-    StudentName: Yup.string().required("Student Name is required"),
-    PhoneNumber: Yup.string()
-      .required("Phone Number is required")
-      .matches(/^[0-9]{10}$/, "Phone number must be 10 digits"),
-    Email: Yup.string().email("Invalid email format").required("Email is required"),
-    Gender: Yup.string().oneOf(["Male", "Female"], "Invalid Gender").required("Gender is required"),
-    PaymentScreenshot: Yup.mixed().required("Payment Screenshot is required"),
-    Course: Yup.string()
-      .oneOf(["React", "MERN", "MEAN", "Java", "Angular", "Vite"], "Invalid Course")
-      .required("Course is required"),
-  });
+const FileUpload = () => {
+  const [file, setFile] = useState(null);
+  const [filename, setFilename] = useState('');
+  const [add] = useAddMutation();
 
-  const [addStudent] = useAddMutation();
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setFilename(selectedFile.name);
+    }
+  };
 
-  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+  const handleFilenameChange = (event) => setFilename(event.target.value);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!file || !filename) {
+      alert('Please enter a filename and select a file.');
+      return;
+    }
     try {
       const formData = new FormData();
-      formData.append("StudentName", values.StudentName);
-      formData.append("PhoneNumber", values.PhoneNumber);
-      formData.append("Email", values.Email);
-      formData.append("Gender", values.Gender);
-      formData.append("PaymentScreenshot", values.PaymentScreenshot);
-      formData.append("Course", values.Course);
+      formData.append('file', file);
+      formData.append('filename', filename);
 
-      // Retrieve token from localStorage
-      const token = localStorage.getItem("token");
-
+      // Extract user ID from the stored token
+      const token = localStorage.getItem('token');
       if (!token) {
-        alert("User is not authenticated. Please log in.");
+        alert('User not authenticated');
         return;
       }
 
-      // Validate token format before decoding
-      if (token.split(".").length !== 3) {
-        alert("Invalid token format. Please log in again.");
-        return;
-      }
-
-      // Decode token to get user ID
       const decodedToken = jwtDecode(token);
       const userId = decodedToken.id || decodedToken._id;
+      formData.append('userId', userId);
 
-      formData.append("userId", userId);
-
-      await addStudent({ formData, userId }).unwrap();
-      alert("Form uploaded successfully");
-
-      resetForm();
-      document.getElementById("file").value = "";
+      await add(formData).unwrap();
+      alert('File uploaded successfully.');
+      setFile(null);
+      setFilename('');
+      document.getElementById('fileInput').value = '';
     } catch (error) {
-      console.error("Failed to upload data:", error);
-      alert("Failed to upload data. Please try again.");
-    } finally {
-      setSubmitting(false);
+      console.error('Failed to upload file:', error);
+      alert('Failed to upload file. Please try again.');
     }
   };
 
   return (
-    <div>
-      <h1>Student Payment</h1>
-      <Formik
-        initialValues={{
-          StudentName: "",
-          PhoneNumber: "",
-          Email: "",
-          Gender: "",
-          PaymentScreenshot: null,
-          Course: "",
-        }}
-        validationSchema={studentSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ setFieldValue, isSubmitting }) => (
-          <Form encType="multipart/form-data" className="upload-form">
-            <div>
-              <Field type="text" name="StudentName" placeholder="Student Name" />
-              <ErrorMessage name="StudentName" component="div" />
-            </div>
-
-            <div>
-              <Field type="text" name="PhoneNumber" placeholder="Phone Number" />
-              <ErrorMessage name="PhoneNumber" component="div" />
-            </div>
-
-            <div>
-              <Field type="email" name="Email" placeholder="Email" />
-              <ErrorMessage name="Email" component="div" />
-            </div>
-
-            <div>
-              <label>
-                <Field type="radio" name="Gender" value="Male" /> Male
-              </label>
-              <label>
-                <Field type="radio" name="Gender" value="Female" /> Female
-              </label>
-              <ErrorMessage name="Gender" component="div" />
-            </div>
-
-            <div>
-              <input
-                id="file"
-                name="PaymentScreenshot"
-                type="file"
-                onChange={(event) => {
-                  setFieldValue("PaymentScreenshot", event.currentTarget.files[0]);
-                }}
-              />
-              <ErrorMessage name="PaymentScreenshot" component="div" />
-            </div>
-
-            <div>
-              {["React", "MERN", "MEAN", "Java", "Angular", "Vite"].map((course) => (
-                <label key={course}>
-                  <Field type="radio" name="Course" value={course} /> {course}
-                </label>
-              ))}
-              <ErrorMessage name="Course" component="div" />
-            </div>
-
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Submitting..." : "Submit"}
-            </button>
-          </Form>
-        )}
-      </Formik>
+    <div className="container mt-5">
+      <h2 className="upload-title">Please Upload Your File</h2>
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className="upload-form">
+        <div className="form-group">
+          <label htmlFor="filename" className="form-label">Filename</label>
+          <input type="text" name="filename" id="filename" className="form-input" value={filename} onChange={handleFilenameChange} required />
+        </div>
+        <div className="form-group">
+          <label htmlFor="fileInput" className="form-label">Choose File</label>
+          <input type="file" name="file" id="fileInput" className="form-input" onChange={handleFileChange} required />
+        </div>
+        <button type="submit" className="upload-button btn btn-primary">Upload</button>
+      </form>
     </div>
   );
-}
+};
 
-export default StudentPayment;
+export default FileUpload;

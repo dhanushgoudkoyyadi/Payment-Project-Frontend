@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useLoginMutation } from '../service/Leads';
+import { useState } from "react";
 
-function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [login, { isLoading }] = useLoginMutation();
+import { useNavigate } from "react-router-dom";
+
+import { useLoginMutation } from "../service/Leads";
+
+const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [login, { isLoading, error }] =useLoginMutation()
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await login({ username, password }).unwrap();
-      console.log(response);
-      localStorage.setItem('token', response.token);
-      navigate('/mainboard');
+      localStorage.setItem("token", response.token);
+      navigate("/Mainboard");
     } catch (err) {
-      alert("wrong credentials...");
+      // Error is handled by the useLoginMutation hook
     }
   };
 
@@ -51,9 +52,10 @@ function Login() {
             {isLoading ? "Logging in..." : "Login"}
           </button>
         </form>
+        {error && <p className="error-message">{error.data?.message || "An error occurred. Please try again."}</p>}
       </div>
     </div>
   );
-}
+};
 
 export default Login;
