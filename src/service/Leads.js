@@ -37,6 +37,15 @@ export const PaymentApi = createApi({
         formData: true, // Ensure correct handling of multipart form data
       }),
     }),
+
+    get:build.mutation({
+      query: () => ({
+        url: `/getdetails`,
+        method: 'GET',
+        
+      })
+    })
+
   }),
 });
 
@@ -45,3 +54,4 @@ export const {
   useLoginMutation,
   useSignupMutation
 } = PaymentApi;
+ 
