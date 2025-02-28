@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const PaymentApi = createApi({
   reducerPath: 'paymentapi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5555/',
+    baseUrl: 'http://localhost:5567/',
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('token');
       if (token) {
@@ -20,6 +20,9 @@ export const PaymentApi = createApi({
         body: credentials
       })
     }),
+    getUsers:build.query({
+      query:()=>"/users",
+    }),
 
     login: build.mutation({
       query: (credentials) => ({
@@ -28,13 +31,20 @@ export const PaymentApi = createApi({
         body: credentials
       })
     }),
+    addPayment:build.mutation({
+      query:({userId,amount})=>({
+        url:`/add-payment`,
+        method:'POST',
+        body:  {userId,amount},
+      }),
+    }),
 
     add: build.mutation({
       query: (formData) => ({
         url: '/details',
         method: 'POST',
         body: formData,
-        formData: true, // Ensure correct handling of multipart form data
+        formData: true, 
       }),
     }),
   }),
@@ -43,5 +53,7 @@ export const PaymentApi = createApi({
 export const {
   useAddMutation,
   useLoginMutation,
-  useSignupMutation
+  useSignupMutation,
+  useGetUsersQuery,
+  useAddPaymentMutation
 } = PaymentApi;

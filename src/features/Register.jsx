@@ -44,7 +44,7 @@ function Register() {
     if (!validateForm()) return;
     
     try {
-      const response = await signup({ username, password, mobileNumber, email, gender, selectedCourse }).unwrap();
+      const response = await signup({ username, password, mobileNumber, email, gender,  selectedCourse }).unwrap();
       localStorage.setItem('token', response.token);
       alert('Signup successful!');
       navigate('/Mainboard');
@@ -152,7 +152,9 @@ function Register() {
               <option value="">Choose a Course</option>
               <option value="MERN">MERN Stack</option>
               <option value="MEAN">MEAN Stack</option>
-              <option value="fullStack">Full Stack Web Development</option>
+              <option value="react"> Frontend with React</option>
+              <option value="Angular"> Frontend with Angular</option>
+              <option value="backend"> Backend</option>
               <option value="Java">Java Full Stack</option>
               <option value="devops">DevOps</option>
             </select>

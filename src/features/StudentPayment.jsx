@@ -4,6 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
+  const [transactionId,setTransactionId]=React.useState();
   const [filename, setFilename] = useState('');
   const[amount,setAmount]=useState('');
   const [add] = useAddMutation();
@@ -15,7 +16,7 @@ const FileUpload = () => {
       setFilename(selectedFile.name);
     }
   };
-
+  const handleTransactionIdChange=(event) =>setTransactionId(event.target.value);
   const handleFilenameChange = (event) => setFilename(event.target.value);
   const handleAmountChange = (event) => setAmount(event.target.value);
 
@@ -30,6 +31,7 @@ const FileUpload = () => {
       formData.append('file', file);
       formData.append('filename', filename);
       formData.append('amount', amount);
+      formData.append('transactionId', transactionId);
 
       // Extract user ID from the stored token
       const token = localStorage.getItem('token');
@@ -46,7 +48,8 @@ const FileUpload = () => {
       alert('File uploaded successfully.');
       setFile(null);
       setFilename('');
-      setAmount(null);
+      setAmount('');
+      setTransactionId=('');
       document.getElementById('fileInput').value = '';
     } catch (error) {
       console.error('Failed to upload file:', error);
@@ -65,8 +68,8 @@ const FileUpload = () => {
           <form onSubmit={handleSubmit} encType="multipart/form-data" className="upload-form">
          
         <div className="form-group">
-          <label htmlFor="filename" className="form-label">TransactionId</label>
-          <input type="text" name="filename" id="filename" className="form-input" value={filename} onChange={handleFilenameChange} required />
+          <label htmlFor="transactionId" className="form-label">TransactionId</label>
+          <input type="text" name="TransactionId" id="TransactionId" className="form-input" value={transactionId} onChange={handleTransactionIdChange} required />
         </div>
         <div className="form-group">
           <label htmlFor="fileInput" className="form-label">Upload Screenshot</label>

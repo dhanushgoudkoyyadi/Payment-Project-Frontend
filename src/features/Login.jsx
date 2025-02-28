@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
-import './Login.css';
+
 import { useLoginMutation } from "../service/Leads";
 
 const Login = () => {
