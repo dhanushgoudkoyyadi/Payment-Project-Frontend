@@ -66,7 +66,7 @@ const FileUpload = () => {
          
         <div className="form-group">
           <label htmlFor="filename" className="form-label">TransactionId</label>
-          <input type="text" name="filename" id="filename" className="form-input" value={filename} onChange={handleFilenameChange} required />
+          <input type="text" name="filename" id="filename" className="form-input" value={transactionid} onChange={handleFilenameChange} required />
         </div>
         <div className="form-group">
           <label htmlFor="fileInput" className="form-label">Upload Screenshot</label>
