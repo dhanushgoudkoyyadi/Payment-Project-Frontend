@@ -29,7 +29,7 @@ function Adminboard() {
       setPaymentValues((prevValues) => ({ ...prevValues, [userId]: '' }));
     } catch (error) {
       console.error('Error adding payment:', error);
-      alert('Failed to add payment.');
+      
     }
   };
 
