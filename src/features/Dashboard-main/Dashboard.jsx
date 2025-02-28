@@ -1,9 +1,7 @@
 import React from 'react';
-import Navbar from './Navbar';
+import Navbar from '../Student-Details/Navbar';
 import { Outlet } from 'react-router-dom';
-import Main from './Dashboard-main/Main';
-import Cards from './Dashboard-main/Cards';
-
+import Main from "./Main"
 function Dashboard() {
   return (
     <div>
@@ -12,7 +10,6 @@ function Dashboard() {
         <Outlet />
       </div>
       <Main></Main>
-      <Cards></Cards>
     </div>
   );
 }

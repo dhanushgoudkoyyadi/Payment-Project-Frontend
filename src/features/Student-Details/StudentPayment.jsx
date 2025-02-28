@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useAddMutation } from '../service/Leads';
+import { useAddMutation } from '../../service/Leads';
 import { jwtDecode } from 'jwt-decode';
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
-  const [filename, setFilename] = useState('');
+  const [transactionId,setTransactionId]=useState();
+  const[filename,setFilename]=useState('');
   const[amount,setAmount]=useState('');
   const [add] = useAddMutation();
 
@@ -15,8 +16,8 @@ const FileUpload = () => {
       setFilename(selectedFile.name);
     }
   };
+  const handleTransactionIdChange=(event) =>setTransactionId(event.target.value);
 
-  const handleFilenameChange = (event) => setFilename(event.target.value);
   const handleAmountChange = (event) => setAmount(event.target.value);
 
   const handleSubmit = async (event) => {
@@ -30,6 +31,7 @@ const FileUpload = () => {
       formData.append('file', file);
       formData.append('filename', filename);
       formData.append('amount', amount);
+      formData.append('transactionId', transactionId);
 
       // Extract user ID from the stored token
       const token = localStorage.getItem('token');
@@ -46,7 +48,8 @@ const FileUpload = () => {
       alert('File uploaded successfully.');
       setFile(null);
       setFilename('');
-      setAmount(null);
+      setAmount('');
+      setTransactionId('');
       document.getElementById('fileInput').value = '';
     } catch (error) {
       console.error('Failed to upload file:', error);
@@ -65,8 +68,8 @@ const FileUpload = () => {
           <form onSubmit={handleSubmit} encType="multipart/form-data" className="upload-form">
          
         <div className="form-group">
-          <label htmlFor="filename" className="form-label">TransactionId</label>
-          <input type="text" name="filename" id="filename" className="form-input" value={transactionid} onChange={handleFilenameChange} required />
+          <label htmlFor="transactionId" className="form-label">TransactionId</label>
+          <input type="text" name="TransactionId" id="TransactionId" className="form-input" value={transactionId} onChange={handleTransactionIdChange} required />
         </div>
         <div className="form-group">
           <label htmlFor="fileInput" className="form-label">Upload Screenshot</label>
@@ -88,16 +91,3 @@ const FileUpload = () => {
 export default FileUpload;
 
 
-/* 
-<h2 className="upload-title">Please Upload Your File</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className="upload-form">
-        <div className="form-group">
-          <label htmlFor="filename" className="form-label">Filename</label>
-          <input type="text" name="filename" id="filename" className="form-input" value={filename} onChange={handleFilenameChange} required />
-        </div>
-        <div className="form-group">
-          <label htmlFor="fileInput" className="form-label">Choose File</label>
-          <input type="file" name="file" id="fileInput" className="form-input" onChange={handleFileChange} required />
-        </div>
-        <button type="submit" className="upload-button btn btn-primary">Upload</button>
-      </form>*/

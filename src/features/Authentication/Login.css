@@ -1,0 +1,95 @@
+/* Login Page Styling */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0; /* Light Grey */
+}
+
+.login-card {
+  display: flex;
+  width: 70%;
+  max-width: 900px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-section {
+  width: 50%;
+  padding: 40px;
+  background-color:  #4d8af0; /* Navy Blue */
+  color: white;
+}
+
+.login-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #00ff80; /* Neon Green */
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #4d8af0; /* Sky Blue */
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333333; /* Dark Grey */
+}
+
+.login-button {
+  background-color: #00ff80; /* Neon Green */
+  color: #1a1a4b; /* Navy Blue */
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #4d8af0; /* Sky Blue */
+  color: white;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Image Section */
+.image-section {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4d8af0; /* Sky Blue */
+}
+
+.login-image {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+}
