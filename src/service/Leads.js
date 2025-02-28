@@ -47,6 +47,15 @@ export const PaymentApi = createApi({
         formData: true, 
       }),
     }),
+
+    get:build.mutation({
+      query: () => ({
+        url: `/getdetails`,
+        method: 'GET',
+        
+      })
+    })
+
   }),
 });
 
@@ -57,3 +66,4 @@ export const {
   useGetUsersQuery,
   useAddPaymentMutation
 } = PaymentApi;
+ 

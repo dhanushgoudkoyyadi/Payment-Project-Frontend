@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAddMutation } from '../service/Leads';
+import { useAddMutation } from '../../service/Leads';
 import { jwtDecode } from 'jwt-decode';
 
 const FileUpload = () => {
@@ -91,16 +91,3 @@ const FileUpload = () => {
 export default FileUpload;
 
 
-/* 
-<h2 className="upload-title">Please Upload Your File</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className="upload-form">
-        <div className="form-group">
-          <label htmlFor="filename" className="form-label">Filename</label>
-          <input type="text" name="filename" id="filename" className="form-input" value={filename} onChange={handleFilenameChange} required />
-        </div>
-        <div className="form-group">
-          <label htmlFor="fileInput" className="form-label">Choose File</label>
-          <input type="file" name="file" id="fileInput" className="form-input" onChange={handleFileChange} required />
-        </div>
-        <button type="submit" className="upload-button btn btn-primary">Upload</button>
-      </form>*/

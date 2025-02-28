@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import './Register.css';
-import { useSignupMutation } from "../service/Leads";
+import { useSignupMutation } from "../../service/Leads";
 
 function Register() {
   const [username, setUsername] = React.useState("");
