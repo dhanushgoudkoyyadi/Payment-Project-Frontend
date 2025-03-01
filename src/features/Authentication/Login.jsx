@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { useLoginMutation } from "../service/Leads";
+import {useLoginMutation } from "../../service/Leads"; 
 
 const Login = () => {
   const [username, setUsername] = useState("");

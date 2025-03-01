@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAddPaymentMutation, useGetUsersQuery } from '../service/Leads';
+import { useAddPaymentMutation,useGetUsersQuery} from '../../service/Leads';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Adminboard() {
