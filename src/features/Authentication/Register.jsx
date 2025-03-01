@@ -1,15 +1,17 @@
-import React from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
 import './Register.css';
 import { useSignupMutation } from "../../service/Leads";
+import { useNavigate } from "react-router-dom";
+import register1 from "../images/register.png";
+
 
 function Register() {
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [mobileNumber, setMobileNumber] = React.useState("");
-  const [gender, setGender] = React.useState("");
-  const [selectedCourse, setSelectedCourse] = React.useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [gender, setGender] = useState("");
+  const [selectedCourse, setSelectedCourse] = useState("");
   const [signup, { isLoading }] = useSignupMutation();
   const navigate = useNavigate();
 
@@ -42,9 +44,9 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-    
+
     try {
-      const response = await signup({ username, password, mobileNumber, email, gender,  selectedCourse }).unwrap();
+      const response = await signup({ username, password, mobileNumber, email, gender, selectedCourse }).unwrap();
       localStorage.setItem('token', response.token);
       alert('Signup successful!');
       navigate('/Mainboard');
@@ -56,7 +58,6 @@ function Register() {
   return (
     <div className="signup-container">
       <div className="signup-card">
-        <h1 className="signup-title">Create Your Account</h1>
         <form onSubmit={handleSubmit} className="signup-form">
           <div className="form-group">
             <label htmlFor="username">Username:</label>
@@ -152,9 +153,9 @@ function Register() {
               <option value="">Choose a Course</option>
               <option value="MERN">MERN Stack</option>
               <option value="MEAN">MEAN Stack</option>
-              <option value="react"> Frontend with React</option>
-              <option value="Angular"> Frontend with Angular</option>
-              <option value="backend"> Backend</option>
+              <option value="react">Frontend with React</option>
+              <option value="Angular">Frontend with Angular</option>
+              <option value="backend">Backend</option>
               <option value="Java">Java Full Stack</option>
               <option value="devops">DevOps</option>
             </select>
@@ -164,8 +165,13 @@ function Register() {
             {isLoading ? "Signing up..." : "Signup"}
           </button>
         </form>
+        
+        <div className="image-sections">
+          <img src={register1} alt="Register" className="register-image" /> {/* Corrected reference */}
+        </div>
       </div>
     </div>
+   
   );
 }
 

@@ -54,9 +54,13 @@ export const PaymentApi = createApi({
         method: 'GET',
         
       })
-    })
+    }),
+    getOne: build.query({
+      query: (userId) => `/users/${userId}`, // Ensure backend has this route
+    }),
 
   }),
+  
 });
 
 export const {
@@ -64,6 +68,6 @@ export const {
   useLoginMutation,
   useSignupMutation,
   useGetUsersQuery,
-  useAddPaymentMutation
+  useAddPaymentMutation,useGetOneQuery
 } = PaymentApi;
  

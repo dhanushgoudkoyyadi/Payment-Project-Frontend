@@ -4,8 +4,8 @@ import { jwtDecode } from 'jwt-decode';
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
-  const [transactionId,setTransactionId]=React.useState();
-  const [filename, setFilename] = useState('');
+  const [transactionId,setTransactionId]=useState();
+  const[filename,setFilename]=useState('');
   const[amount,setAmount]=useState('');
   const [add] = useAddMutation();
 
@@ -17,7 +17,7 @@ const FileUpload = () => {
     }
   };
   const handleTransactionIdChange=(event) =>setTransactionId(event.target.value);
-  const handleFilenameChange = (event) => setFilename(event.target.value);
+
   const handleAmountChange = (event) => setAmount(event.target.value);
 
   const handleSubmit = async (event) => {
@@ -49,11 +49,11 @@ const FileUpload = () => {
       setFile(null);
       setFilename('');
       setAmount('');
-      setTransactionId=('');
+      setTransactionId('');
       document.getElementById('fileInput').value = '';
-    } catch (error) {
+    }catch (error) {
       console.error('Failed to upload file:', error);
-      alert('Failed to upload file. Please try again.');
+    
     }
   };
 
