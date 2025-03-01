@@ -58,6 +58,14 @@ export const PaymentApi = createApi({
     getOne: build.query({
       query: (userId) => `/users/${userId}`, // Ensure backend has this route
     }),
+    addup: build.mutation({
+      query: (data) => ({
+        url: '/addcourse',
+        method: 'POST',
+        body: data
+      })
+    }),
+
 
   }),
   
@@ -68,6 +76,7 @@ export const {
   useLoginMutation,
   useSignupMutation,
   useGetUsersQuery,
-  useAddPaymentMutation,useGetOneQuery
+  useAddPaymentMutation,useGetOneQuery,
+  useAddupMutation
 } = PaymentApi;
  
