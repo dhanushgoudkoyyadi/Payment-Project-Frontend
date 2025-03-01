@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
-import { useAddupMutation } from '../../service/Leads';
+import { useAddupMutation,useGetOneQuery} from '../../service/Leads';
 import {jwtDecode} from 'jwt-decode';
+
 function AddCourse() {
   const [mobileNumber, setMobileNumber] = useState('');
   const [email, setEmail] = useState('');
   const [selectedCourse, setSelectedCourse] = useState('');
-  const [addup, { isLoading }] = useAddupMutation();
+  const [addup] = useAddupMutation();
+
+  const token = localStorage.getItem("token"); 
+      const userId = token ? jwtDecode(token).id : null;
+      console.log(userId)
+    const { data: user, error, isLoading } = useGetOneQuery(userId, { skip: !userId });
+  
+    if (!userId) return <p>Please log in</p>;
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error fetching user data</p>;
+    console.log(user);
+
   const validateForm = () => {
     if (!mobileNumber || !email || !selectedCourse) {
       alert('All fields are required!');
@@ -44,6 +56,9 @@ function AddCourse() {
         alert('User not authenticated');
         return;
       }
+      if (user.mobileNumber !== mobileNumber) {
+        return alert("Mobile number mismatch");
+    }
 
       const decodedToken = jwtDecode(token);
       formData.userId = decodedToken.id || decodedToken._id;
@@ -108,7 +123,7 @@ function AddCourse() {
             </select>
           </div>
 
-          <button type="submit" disabled={isLoading} className="signup-button">
+          <button type="submit" className="signup-button">
             {isLoading ? 'Adding...' : 'Add Course'}
           </button>
         </form>
