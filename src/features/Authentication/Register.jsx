@@ -49,7 +49,7 @@ function Register() {
       const response = await signup({ username, password, mobileNumber, email, gender, selectedCourse }).unwrap();
       localStorage.setItem('token', response.token);
       alert('Signup successful!');
-      navigate('/Mainboard');
+      navigate('/Home');
     } catch (err) {
       alert('Signup failed. Please try again.');
     }

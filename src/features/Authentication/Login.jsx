@@ -19,7 +19,7 @@ const Login = () => {
     try {
       const response = await login({ username, password }).unwrap();
       localStorage.setItem("token", response.token);
-      navigate("/Mainboard");
+      navigate("/Home");
     } catch (err) {
       console.error("Login error:", err);
     }
