@@ -6,7 +6,7 @@ import Mainboard from './features/Student-Details/Mainboard';
 import Adminboard from './features/Admin/Adminboard';
 import Register from "./features/Authentication/Register";
 import SpFailed from './features/Student-Details/SpFailed';
-
+import Home from "./features/Home/Home"
 function App() {
   return (
     <Router>
@@ -18,6 +18,7 @@ function App() {
         <Route path="/Mainboard" element={<Mainboard/>}/>
         <Route path="/SpFailed" element={<SpFailed/>}/>
         <Route path="/Adminboard" element={<Adminboard/>}/>
+        <Route path="/Home" element={<Home/>}/>
         
       </Routes>
     </Router>

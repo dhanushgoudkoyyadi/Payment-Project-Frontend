@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import login1 from "../images/login.png";
+import login1 from '../images/login.png';
 import { useLoginMutation } from "../../service/Leads";
-import "./Login.css"; // Import the new CSS file
-
+import "./Login.css"
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +19,7 @@ const Login = () => {
     try {
       const response = await login({ username, password }).unwrap();
       localStorage.setItem("token", response.token);
-      navigate("/Mainboard");
+      navigate("/Home");
     } catch (err) {
       console.error("Login error:", err);
     }
