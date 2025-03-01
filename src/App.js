@@ -5,6 +5,7 @@ import Admin from "./features/Admin/Admin";
 import Mainboard from './features/Student-Details/Mainboard';
 import Adminboard from './features/Admin/Adminboard';
 import Register from "./features/Authentication/Register";
+import SpFailed from './features/Student-Details/SpFailed';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/Mainboard" element={<Mainboard/>}/>
+        <Route path="/SpFailed" element={<SpFailed/>}/>
         <Route path="/Adminboard" element={<Adminboard/>}/>
         
       </Routes>
