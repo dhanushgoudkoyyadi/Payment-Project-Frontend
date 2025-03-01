@@ -103,9 +103,7 @@ function AddCourse() {
         </button>
       </form>
       
-      <div className="image-sections">
-        <img src={register1} alt="Register" className="register-image" /> {/* Corrected reference */}
-      </div>
+      
     </div>
   </div>
   )

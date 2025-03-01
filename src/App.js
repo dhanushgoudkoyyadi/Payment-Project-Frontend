@@ -7,6 +7,7 @@ import Adminboard from './features/Admin/Adminboard';
 import Register from "./features/Authentication/Register";
 import SpFailed from './features/Student-Details/SpFailed';
 import Home from "./features/Home/Home"
+import AddCourse from './features/Student-Details/AddCourse';
 function App() {
   return (
     <Router>
@@ -19,6 +20,8 @@ function App() {
         <Route path="/SpFailed" element={<SpFailed/>}/>
         <Route path="/Adminboard" element={<Adminboard/>}/>
         <Route path="/Home" element={<Home/>}/>
+        <Route path="/AddCourse" element={<AddCourse/>}/>
+        
         
       </Routes>
     </Router>
