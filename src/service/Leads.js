@@ -59,10 +59,11 @@ export const PaymentApi = createApi({
       query: (userId) => `/users/${userId}`, 
     }),
     addup: build.mutation({
-      query: (data) => ({
-        url: '/addcourse',
+      query: (formData) => ({
+        url: '/addnewcourse',
         method: 'POST',
-        body: data
+        body: formData,
+        formData: true,
       })
     }),
 
