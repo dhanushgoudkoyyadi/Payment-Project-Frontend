@@ -1,22 +1,24 @@
-import React from 'react'
-import { Navigate } from 'react-router-dom';
+import React from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import './Home.css'; // Import the CSS file
+
 function Home() {
     const navigate = Navigate();
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/Login');
-
     }
+
     return (
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <Link to="/Dashbord">Edupoly</Link>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <Link to="/Dashboard" className="brand-name">Edupoly</Link>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <button onClick={handleLogout}>Log Out</button>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav">
+                        <button onClick={handleLogout} className="logout-button">Log Out</button>
                     </ul>
                 </div>
             </nav>
@@ -24,4 +26,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Home;
