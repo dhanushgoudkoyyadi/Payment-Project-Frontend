@@ -6,7 +6,8 @@ import Mainboard from './features/Student-Details/Mainboard';
 import Adminboard from './features/Admin/Adminboard';
 import Register from "./features/Authentication/Register";
 import SpFailed from './features/Student-Details/SpFailed';
-
+import Paymentdetails from './features/Paymentdetails';
+import FileUpload from './features/Student-Details/StudentPayment';
 function App() {
   return (
     <Router>
@@ -18,6 +19,9 @@ function App() {
         <Route path="/Mainboard" element={<Mainboard/>}/>
         <Route path="/SpFailed" element={<SpFailed/>}/>
         <Route path="/Adminboard" element={<Adminboard/>}/>
+        <Route path="/Paymentdetails" element={<Paymentdetails/>}/>
+        <Route path="/FileUpload" element={<FileUpload/>}/>
+
         
       </Routes>
     </Router>

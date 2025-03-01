@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const PaymentApi = createApi({
   reducerPath: 'paymentapi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5567/',
+    baseUrl: 'http://localhost:7777/',
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('token');
       if (token) {
@@ -56,7 +56,7 @@ export const PaymentApi = createApi({
       })
     }),
     getOne: build.query({
-      query: (userId) => `/users/${userId}`, // Ensure backend has this route
+      query: (userId) => `/users/${userId}`, 
     }),
 
   }),
