@@ -51,9 +51,9 @@ const FileUpload = () => {
       setAmount('');
       setTransactionId('');
       document.getElementById('fileInput').value = '';
-    } catch (error) {
+    }catch (error) {
       console.error('Failed to upload file:', error);
-      alert('Failed to upload file. Please try again.');
+    
     }
   };
 
