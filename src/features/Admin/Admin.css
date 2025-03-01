@@ -1,66 +1,76 @@
 /* Admin.css */
-body {
-  background-color: #f0f8ff; /* Light blue background */
-}
-
 .admin-container {
+  background-color: #f0f0f0; /* Light Grey */
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .formik-form {
-  background-color: #ffffff; /* White background */
-  border: 1px solid #d0e6f7; /* Light blue border */
+  background: #ffffff;
+  padding: 2rem;
   border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.formik-form h2 {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
   text-align: center;
-  color: #007bff; /* Blue text */
 }
 
-.formik-form .form-group {
-  margin-bottom: 15px;
+h2 {
+  color: #1a1a4b; /* Navy Blue */
+  margin-bottom: 1rem;
 }
 
-.formik-form .form-group label {
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+label {
   display: block;
-  margin-bottom: 5px;
-  color: #007bff; /* Blue text */
+  font-weight: bold;
+  color: #333333; /* Dark Grey */
+  margin-bottom: 0.5rem;
 }
 
-.formik-form .form-control {
-  border: 1px solid #d0e6f7; /* Light blue border for input fields */
-  border-radius: 5px;
+.form-control {
+  width: 100%;
   padding: 10px;
+  border: 1px solid #4d8af0; /* Sky Blue */
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #333333; /* Dark Grey */
 }
 
-.formik-form .form-control:focus {
-  border-color: #007bff; /* Blue border on focus */
-  box-shadow: none; /* Remove default box-shadow on focus */
+.form-control:focus {
+  outline: none;
+  border-color: #00ff80; /* Neon Green */
+  box-shadow: 0px 0px 8px rgba(0, 255, 128, 0.6);
 }
 
-.formik-form .error-message {
-  color: #d9534f; /* Red color for error messages */
-  font-size: 0.875em;
+.error-message {
+  color: red;
+  font-size: 0.9rem;
   margin-top: 5px;
 }
 
-.formik-form .btn-primary {
-  background-color: #007bff; /* Blue button */
-  border-color: #007bff; /* Blue border for button */
-}
-
-.formik-form .btn-primary:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-  border-color: #0056b3; /* Darker blue border on hover */
-}
-
-.formik-form .btn-block {
-  display: block;
+.btn-primary {
+  background-color: #1a1a4b; /* Navy Blue */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
   width: 100%;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #4d8af0; /* Sky Blue */
+}
+
+.btn-primary:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
