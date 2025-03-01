@@ -5,7 +5,7 @@ import {jwtDecode} from "jwt-decode";
 import SpFailed from './SpFailed'; 
 
 function Mainboard() {
-  const token = localStorage.getItem("token"); // Assuming token is stored in local storage
+  const token = localStorage.getItem("token"); 
     const userId = token ? jwtDecode(token).id : null;
     console.log(userId)
   const { data: user, error, isLoading } = useGetOneQuery(userId, { skip: !userId });
