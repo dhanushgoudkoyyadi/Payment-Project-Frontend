@@ -1,13 +1,13 @@
 import React from 'react';
-import { useGetUsersQuery } from '../service/Leads';
+import { useGetOneQuery } from '../../service/Leads';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import FileUpload from './Student-Details/StudentPayment';
+import FileUpload from '../Student-Details/StudentPayment';
 function Paymentdetails() {
-    const { data: users, error, isLoading } = useGetUsersQuery();
+    const { data: users, error, isLoading } = useGetOneQuery();
     const navigate=useNavigate();
     const courseFee = 35000;
-
+    console.log(users);
     const loggedInUser = useSelector((state) => state.auth?.user) || {}; 
     console.log("Logged-in User:", loggedInUser);
 

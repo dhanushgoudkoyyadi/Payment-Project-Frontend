@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Home.css'; // Import the CSS file
 
 function Home() {
-    const navigate = Navigate();
+    const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/Login');
@@ -21,7 +21,9 @@ function Home() {
                         <button onClick={handleLogout} className="logout-button">Log Out</button>
                     </ul>
                 </div>
+                
             </nav>
+            
         </div>
     )
 }
