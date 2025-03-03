@@ -6,7 +6,7 @@ import Mainboard from './features/Student-Details/Mainboard';
 import Adminboard from './features/Admin/Adminboard';
 import Register from "./features/Authentication/Register";
 import SpFailed from './features/Student-Details/SpFailed';
-import Paymentdetails from './features/Paymentdetails';
+import Paymentdetails from './features/Home/Paymentdetails';
 import FileUpload from './features/Student-Details/StudentPayment';
 import Home from "./features/Home/Home"
 function App() {

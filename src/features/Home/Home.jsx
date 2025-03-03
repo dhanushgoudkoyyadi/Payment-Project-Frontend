@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Home.css'; // Import the CSS file
+import Paymentdetails from './Paymentdetails';
 
 function Home() {
-    const navigate = Navigate();
+    const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/Login');
@@ -12,7 +13,7 @@ function Home() {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <Link to="/Dashboard" className="brand-name">Edupoly</Link>
+                <Link to="/" className="brand-name">Edupoly</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -22,6 +23,7 @@ function Home() {
                     </ul>
                 </div>
             </nav>
+            <Paymentdetails/>
         </div>
     )
 }

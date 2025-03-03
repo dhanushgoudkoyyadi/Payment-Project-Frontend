@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <div className="Navbar">
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link className="navbar-brand" to="/Dashboard">Edupoly</Link>
+      <Link className="navbar-brand" to="/">Edupoly</Link>
       <button 
         className="navbar-toggler" 
         type="button" 
