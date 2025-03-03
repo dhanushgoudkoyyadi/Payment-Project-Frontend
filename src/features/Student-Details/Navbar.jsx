@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css'
+import AddCourse from './AddCourse';
 function Navbar() {
   return (
     <div className="Navbar">
@@ -32,7 +33,9 @@ function Navbar() {
         </ul>
       </div>
     </nav>
+    
     </div>
+    
   );
 }
 

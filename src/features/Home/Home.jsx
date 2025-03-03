@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
 import './Home.css'; // Import the CSS file
-import Paymentdetails from './Paymentdetails';
+import AddCourse from '../Student-Details/AddCourse';
 
 function Home() {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ function Home() {
                     </ul>
                 </div>
             </nav>
-            <Paymentdetails/>
+            <AddCourse />
         </div>
     )
 }
