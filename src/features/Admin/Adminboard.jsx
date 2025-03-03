@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAddPaymentMutation, useGetUsersQuery } from '../../service/Leads';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Adminboard.css';
 import { useNavigate } from 'react-router-dom';
 
 function Adminboard() {
@@ -45,58 +46,46 @@ function Adminboard() {
   );
 
   return (
-    <div className="container mt-5">
+    <div className="container-fluid">
       {/* Fixed Title */}
-      <div className="row justify-content-center">
-        <div className="text-center">
-          <h1 className=" position-fixed top-0 w-100 bg-light py-3 shadow" style={{ zIndex: 1000 }}>
-            Registered Students
-          </h1>
-        </div>
-      </div>
+      <h1>Registered Students</h1>
 
-      {/* Search Bar (Below Fixed Title) */}
-      <div className="row justify-content-center mb-4 mt-5">
-        <div className="col-md-6">
-          <input
-            type="text"
-            placeholder="Search students..."
-            className="form-control"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
+      {/* Search Bar */}
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search students..."
+          className="form-control search-bar"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </div>
 
       {/* Loading & Error Messages */}
-      {isLoading && <p className="text-center text-muted">Loading Students...</p>}
-      {error && <p className="text-center text-danger">Error fetching Students</p>}
+      {isLoading && <p className="text-center loading-text">Loading Students...</p>}
+      {error && <p className="text-center error-text">Error fetching Students</p>}
 
       {/* Scrollable Student List */}
-      <div className="row" style={{ maxHeight: '500px', overflowY: 'auto' }}>
+      <div className="student-list">
         {filteredUsers?.map((user) => (
-          <div key={user._id} className="col-md-4 mb-4">
-            <div className="card shadow-sm">
-              <div className="card-body text-center">
-                <h5 className="card-title">{user.username}</h5>
-                <h6>Email: <span>{user.email}</span></h6>
-                <h6>Mobile: <span>{user.mobileNumber}</span></h6>
-                <h6>Course: <span>{user.selectedCourse}</span></h6>
-                <input
-                  type="number"
-                  value={paymentValues[user._id] || ''}
-                  onChange={(e) => handleChange(user._id, e.target.value)}
-                  placeholder="Enter payment"
-                  className="form-control mt-3 text-center"
-                />
-                <button
-                  onClick={() => handleSubmit(user._id)}
-                  className="btn btn-primary mt-3"
-                >
-                  Save
-                </button>
-              </div>
-            </div>
+          <div key={user._id} className="student-card">
+            <h5 className="card-title">{user.username}</h5>
+            <h6>Email: <span>{user.email}</span></h6>
+            <h6>Mobile: <span>{user.mobileNumber}</span></h6>
+            <h6>Course: <span>{user.selectedCourse}</span></h6>
+            <input
+              type="number"
+              value={paymentValues[user._id] || ''}
+              onChange={(e) => handleChange(user._id, e.target.value)}
+              placeholder="Enter payment"
+              className="form-control payment-input mt-3 text-center"
+            />
+            <button
+              onClick={() => handleSubmit(user._id)}
+              className="btn payment-btn mt-3"
+            >
+              Save
+            </button>
           </div>
         ))}
       </div>

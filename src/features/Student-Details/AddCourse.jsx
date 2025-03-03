@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useAddupMutation,useGetOneQuery} from '../../service/Leads';
 import {jwtDecode} from 'jwt-decode';
+import './AddCourse.css';
+
 
 function AddCourse() {
   const [mobileNumber, setMobileNumber] = useState('');

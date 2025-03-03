@@ -12,27 +12,22 @@ function PaymentDetails() {
     // Get user ID from token
     const token = localStorage.getItem("token");
     const userId = token ? jwtDecode(token).id : null;
-    console.log("User ID:", userId);
 
     // Fetch student payment details
     const { data: user, error, isLoading } = useGetOneQuery(userId, { skip: !userId });
-    console.log("User:", user);
 
     // Redux state for logged-in user
     const loggedInUser = useSelector((state) => state.auth?.user) || {};
-    console.log("Logged-in User:", loggedInUser);
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error fetching data</div>;
+    if (isLoading) return <div className="loading">Loading...</div>;
+    if (error) return <div className="error-message">Error fetching data</div>;
 
     const registeredUser = user || {};
     const studentPayments = registeredUser.StudentPaymentDetails || [];
-    const discountAmount = registeredUser.paymentAmount;
-    console.log(discountAmount);
+    const discountAmount = registeredUser.paymentAmount || 0;
 
     // Calculate total paid amount
     const totalPaidAmount = studentPayments.reduce((sum, payment) => sum + payment.amount, 0);
-    console.log(totalPaidAmount);
 
     // Calculate remaining amount
     const remainingAmount = courseFee - (totalPaidAmount + discountAmount);
@@ -44,7 +39,7 @@ function PaymentDetails() {
                 <div className="card">
                     <h3 className="text">Student Name: {registeredUser.username}</h3>
                     <h4 className="text">Course Fee: ₹{courseFee}</h4>
-                    <h4 className="text">Discount: ₹{registeredUser.paymentAmount || 0}</h4>
+                    <h4 className="text">Discount: ₹{discountAmount}</h4>
                     <h4 className="text">Total Paid Amount: ₹{totalPaidAmount}</h4>
                     <h4 className="text">Amount to be Paid: ₹{remainingAmount > 0 ? remainingAmount : 0}</h4>
                 </div>

@@ -1,0 +1,110 @@
+/* General Styles */
+body {
+    background-color: #f0f0f0; /* Light Grey */
+    color: white; /* White text */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Fixed Title */
+h1 {
+    color: white; /* White text */
+    font-weight: bold;
+    background-color: #1a1a4b; /* Navy Blue */
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Ensuring search bar is below the fixed title */
+.search-container {
+    margin-top: 80px; /* Push below fixed title */
+    display: flex;
+    justify-content: center;
+}
+
+/* Search Bar */
+.search-bar {
+    width: 50%;
+    max-width: 400px;
+    border: 2px solid #4d8af0; /* Sky Blue */
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 16px;
+    color: #1a1a4b; /* Navy Blue */
+    background-color: #f0f0f0; /* Light Grey */
+}
+
+.search-bar:focus {
+    border-color: #00ff80; /* Neon Green */
+    box-shadow: 0 0 5px #00ff80;
+}
+
+/* Student List */
+.student-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin-top: 20px;
+    overflow-y: auto;
+}
+
+/* Student Card */
+.student-card {
+    background-color: #1a1a4b; /* Navy Blue */
+    border: 2px solid #4d8af0; /* Sky Blue */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: white; /* Ensure text is white */
+}
+
+/* Input Fields */
+.payment-input {
+    border: 2px solid #4d8af0; /* Sky Blue */
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 16px;
+    text-align: center;
+    background-color: #f0f0f0; /* Light Grey */
+    color: #1a1a4b; /* Navy Blue */
+}
+
+.payment-input:focus {
+    border-color: #00ff80; /* Neon Green */
+    outline: none;
+    box-shadow: 0 0 5px #00ff80;
+}
+
+/* Save Button */
+.payment-btn {
+    background-color: #00ff80; /* Neon Green */
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #1a1a4b; /* Navy Blue */
+}
+
+.payment-btn:hover {
+    background-color: #4d8af0; /* Sky Blue */
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .search-bar {
+        width: 80%;
+    }
+
+    .student-list {
+        grid-template-columns: 1fr;
+    }
+}

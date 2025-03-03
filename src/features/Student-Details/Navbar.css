@@ -1,11 +1,71 @@
-*{
-    padding: 0px;
-    margin: 0px;
+/* Navbar Styles */
+.navbar {
+    background-color: #1a1a4b !important;
+    padding: 20px; /* Increased padding for more height */
+    width: 100vw; /* Ensures full width */
+    min-height: 80px; /* Increased height */
 }
 
-.Navbar{
-    position: -webkit-sticky; /* For Safari */
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+/* Edupoly Brand */
+.navbar-brand {
+    color: white !important; /* White text */
+    font-size: 28px; /* Slightly bigger font */
+    font-weight: bold;
+    text-decoration: none;
+    padding-left: 20px; /* Adjusted for better spacing */
+}
+
+.navbar-brand:hover {
+    color: #4d8af0 !important;
+}
+
+/* Navbar Toggler */
+.navbar-toggler {
+    border-color: #00ff80;
+}
+
+.navbar-toggler-icon {
+    background-color: #00ff80;
+}
+
+/* Navbar Links */
+.navbar-nav {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+    padding-right: 20px; /* Added right padding */
+}
+
+.nav-item {
+    margin-right: 25px; /* Increased spacing between items */
+}
+
+.nav-link {
+    color: #f0f0f0 !important;
+    font-size: 20px; /* Bigger text */
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #00ff80 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-item {
+        margin-bottom: 10px;
+    }
 }
