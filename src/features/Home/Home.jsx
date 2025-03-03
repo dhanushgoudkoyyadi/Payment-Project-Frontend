@@ -1,10 +1,26 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.css'; 
-import AddCourse from '../Student-Details/AddCourse';
-import Paymentdetails from "./Paymentdetails"
+import { jwtDecode } from 'jwt-decode';
+import { useGetOneQuery } from '../../service/Leads';
+import { useSelector } from 'react-redux';
+import Coursedetails from './Coursedetails';
+import PaymentDetails from './Paymentdetails';
+
 function Home() {
+    const token = localStorage.getItem("token");
+    const userId = token ? jwtDecode(token).id : null;
+    console.log("User ID:", userId);
     const navigate = useNavigate();
+    const { data: user, error, isLoading } = useGetOneQuery(userId, { skip: !userId });
+    console.log(user);
+    const loggedInUser = useSelector((state) => state.auth?.user) || {};
+    console.log("Logged-in User:", loggedInUser);
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error fetching data</div>;
+    const registeredUser = user || {};
+
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/Login');
@@ -23,10 +39,18 @@ function Home() {
                     </ul>
                 </div>
             </nav>
-            <AddCourse />
-            <Paymentdetails></Paymentdetails>
+            <br />
+            <div>
+                <h1 className="user-info">Welcome  {registeredUser.username.toUpperCase()}</h1>
+                <h3 className="email">Email: {registeredUser.email}</h3>
+            </div>
+            <br /><br />
+            <div>
+                <Coursedetails />
+                <PaymentDetails />
+            </div>
         </div>
-    )
+    );
 }
 
 export default Home;

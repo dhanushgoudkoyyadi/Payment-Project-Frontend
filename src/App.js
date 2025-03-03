@@ -23,8 +23,8 @@ function App() {
         <Route path="/Adminboard" element={<Adminboard/>}/>
         <Route path="/Paymentdetails" element={<Paymentdetails/>}/>
         <Route path="/FileUpload" element={<FileUpload/>}/>
-
         <Route path="/Home" element={<Home/>}/>
+        <Route path="/AddCourse" element={<AddCourse/>}/>
        
         
         
