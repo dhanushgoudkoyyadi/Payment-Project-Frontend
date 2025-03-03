@@ -1,4 +1,4 @@
-/* Navbar Styles */
+/* Remove Bootstrap styles */
 .custom-navbar {
     width: 100%;
     background-color: #1a1a4b; /* Navy Blue */
@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed; /* Keeps navbar at the top */
+    position: fixed; /* Ensures navbar is always visible */
     top: 0;
     left: 0;
     z-index: 1000;
@@ -40,9 +40,16 @@
     color: white;
 }
 
-/* Fix for Content Overlapping Navbar */
+/* Prevent extra blue box issue */
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* Adjust layout */
 .home-container {
-    margin-top: 80px; /* Adjusted to avoid content hiding behind navbar */
+    margin-top: 80px; /* Prevents content from being hidden behind navbar */
     padding: 20px;
     background-color: #f0f0f0; /* Light Grey */
     min-height: 100vh;
@@ -51,18 +58,16 @@
 /* Center user info */
 .user-info-container {
     text-align: center;
-    margin-top: 20px;
+    margin:60px ;
+    
 }
 
 .user-info {
-    color: #1a1a4b; /* Navy Blue */
-    font-size: 26px;
-    font-weight: bold;
+    color: #1a1a4b;
 }
 
 .email {
     color: #333;
-    font-size: 18px;
 }
 
 /* Layout for details */

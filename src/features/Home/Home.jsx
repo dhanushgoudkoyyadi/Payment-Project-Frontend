@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import { useGetOneQuery } from '../../service/Leads';
 import { useSelector } from 'react-redux';
 import Coursedetails from './Coursedetails';
@@ -33,15 +33,18 @@ function Home() {
             </nav>
 
             {/* User Info */}
+            
+            <div>
             <div className="user-info-container">
-                <h1 className="user-info">Welcome {registeredUser.username?.toUpperCase()}</h1>
+                <h2 className="user-info">Welcome {registeredUser.username?.toUpperCase()}</h2>
                 <h3 className="email">Email: {registeredUser.email}</h3>
             </div>
-
             {/* Course and Payment Details */}
             <div className="details-container">
+                
                 <Coursedetails />
                 <PaymentDetails />
+            </div>
             </div>
         </div>
     );
