@@ -38,8 +38,8 @@ function Home() {
                     </ul>
                 </div>
             </nav>
-            <AddCourse />
-            <Paymentdetails></Paymentdetails>
+           <Coursedetails></Coursedetails>
+           <PaymentDetails></PaymentDetails>
         </div>
     );
 }

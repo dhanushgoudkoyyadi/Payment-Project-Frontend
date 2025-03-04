@@ -56,11 +56,11 @@ function Register() {
   };
 
   return (
-    <div className="signup-container">
-      <div className="signup-card">
-        <form onSubmit={handleSubmit} className="signup-form">
+    <div className="register-container">
+      <div className="register-card">
+        <form onSubmit={handleSubmit} className="register-form">
           <div className="form-group">
-            <label htmlFor="username">Username:</label>
+            <label htmlFor="username" className="form-label">Username:</label>
             <input
               id="username"
               type="text"
@@ -73,7 +73,7 @@ function Register() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password" className="form-label">Password:</label>
             <input
               id="password"
               type="password"
@@ -86,7 +86,7 @@ function Register() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="mobileNumber">Mobile Number:</label>
+            <label htmlFor="mobileNumber" className="form-label">Mobile Number:</label>
             <input
               id="mobileNumber"
               type="tel"
@@ -99,7 +99,7 @@ function Register() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email" className="form-label">Email:</label>
             <input
               id="email"
               type="email"
@@ -112,7 +112,7 @@ function Register() {
           </div>
 
           <div className="form-group">
-            <label>Gender:</label>
+            <label className="form-label">Gender:</label>
             <div className="gender-options">
               <label htmlFor="male">
                 <input
@@ -142,13 +142,13 @@ function Register() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="course">Select Your Course:</label>
+            <label htmlFor="course" className="form-label">Select Your Course:</label>
             <select
               id="course"
               value={selectedCourse}
               onChange={(e) => setSelectedCourse(e.target.value)}
               required
-              className="form-input"
+              className="select-course"
             >
               <option value="">Choose a Course</option>
               <option value="MERN Stack">MERN Stack</option>
@@ -161,17 +161,16 @@ function Register() {
             </select>
           </div>
 
-          <button type="submit" disabled={isLoading} className="signup-button">
+          <button type="submit" disabled={isLoading} className="register-button">
             {isLoading ? "Signing up..." : "Signup"}
           </button>
         </form>
         
-        <div className="image-sections">
-          <img src={register1} alt="Register" className="register-image" /> {/* Corrected reference */}
+        <div className="image-section">
+          <img src={register1} alt="Register" className="register-image" />
         </div>
       </div>
     </div>
-   
   );
 }
 

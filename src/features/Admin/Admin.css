@@ -1,76 +1,130 @@
-/* Admin.css */
-.admin-container {
-  background-color: #f0f0f0; /* Light Grey */
+/* Admin Login Component - White and Violet Theme */
+
+.admin-login-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding: 20px;
 }
 
-.formik-form {
-  background: #ffffff;
-  padding: 2rem;
+.admin-login-form {
+  background-color: white;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 350px;
-  text-align: center;
-}
-
-h2 {
-  color: #1a1a4b; /* Navy Blue */
-  margin-bottom: 1rem;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-  text-align: left;
-}
-
-label {
-  display: block;
-  font-weight: bold;
-  color: #333333; /* Dark Grey */
-  margin-bottom: 0.5rem;
-}
-
-.form-control {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;
   width: 100%;
-  padding: 10px;
-  border: 1px solid #4d8af0; /* Sky Blue */
+  max-width: 400px;
+  transition: all 0.3s ease;
+}
+
+.admin-login-title {
+  color: #6a11cb;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.admin-login-form-group {
+  margin-bottom: 20px;
+}
+
+.admin-login-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.admin-login-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
   border-radius: 5px;
-  font-size: 1rem;
-  color: #333333; /* Dark Grey */
+  font-size: 16px;
+  transition: border-color 0.3s;
 }
 
-.form-control:focus {
+.admin-login-input:focus {
   outline: none;
-  border-color: #00ff80; /* Neon Green */
-  box-shadow: 0px 0px 8px rgba(0, 255, 128, 0.6);
+  border-color: #8a2be2;
+  box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
 }
 
-.error-message {
-  color: red;
-  font-size: 0.9rem;
+.admin-login-error {
+  color: #e74c3c;
+  font-size: 14px;
   margin-top: 5px;
 }
 
-.btn-primary {
-  background-color: #1a1a4b; /* Navy Blue */
+.admin-login-button {
+  width: 100%;
+  background: linear-gradient(135deg, #6a11cb 0%, #8a2be2 100%);
   color: white;
   border: none;
-  padding: 10px 15px;
-  font-size: 1rem;
   border-radius: 5px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
-  width: 100%;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
 }
 
-.btn-primary:hover {
-  background-color: #4d8af0; /* Sky Blue */
+.admin-login-button:hover {
+  background: linear-gradient(135deg, #5a0cb1 0%, #7a1bd2 100%);
+  transform: translateY(-2px);
 }
 
-.btn-primary:disabled {
-  background-color: #cccccc;
+.admin-login-button:disabled {
+  background: #b19cd9;
   cursor: not-allowed;
+  transform: none;
 }
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .admin-login-form {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  .admin-login-title {
+    font-size: 24px;
+  }
+
+  .admin-login-input {
+    padding: 10px 12px;
+  }
+
+  .admin-login-button {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-login-form {
+    padding: 15px;
+  }
+
+  .admin-login-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .admin-login-label {
+    font-size: 14px;
+  }
+
+  .admin-login-input {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .admin-login-button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
