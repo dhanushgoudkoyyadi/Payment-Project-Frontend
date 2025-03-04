@@ -7,9 +7,15 @@ function Adminboard() {
   const { data: users, error, isLoading } = useGetUsersQuery();
   const [addPayment] = useAddPaymentMutation();
   const [paymentValues, setPaymentValues] = useState({});
+  const [paymentTypes, setPaymentTypes] = useState({});
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
-
+  const courseFees = {
+    "MEAN Stack": 35000,
+    "MERN Stack": 35000,
+    "Frontend with Angular": 25000,
+    
+  };
   const handleChange = (userId, value) => {
     setPaymentValues((prevValues) => ({
       ...prevValues,
@@ -17,26 +23,60 @@ function Adminboard() {
     }));
   };
 
-  const handleSubmit = async (userId) => {
-    if (!paymentValues[userId]) {
-      alert('Enter a payment amount');
+  const handleTypeChange = (userId, type) => {
+    setPaymentTypes((prevTypes) => ({
+      ...prevTypes,
+      [userId]: type,
+    }));
+    setPaymentValues((prevValues) => ({
+      ...prevValues,
+      [userId]: '', 
+    }));
+  };
+
+
+  const handleSubmit = async (userId, selectedCourse) => {
+    if (!selectedCourse || !courseFees[selectedCourse]) {
+      alert("Invalid course selection! Cannot determine course fee.");
+      return;
+    }
+
+    const totalFee = courseFees[selectedCourse]; 
+    let value = paymentValues[userId];
+
+    if (!value) {
+      alert("Please enter a payment amount or percentage");
+      return;
+    }
+
+    let amount;
+    if (paymentTypes[userId] === "percentage") {
+      const percentage = parseFloat(value);
+      if (isNaN(percentage) || percentage <= 0 || percentage > 100) {
+        alert("Enter a valid percentage (1-100)");
+        return;
+      }
+      amount = (percentage / 100) * totalFee;
+    } else {
+      amount = parseFloat(value);
+      if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid amount");
+        return;
+      }
+    }
+
+    if (amount > totalFee) {
+      alert(`Payment amount cannot exceed ₹${totalFee}`);
       return;
     }
 
     try {
-      const amount = Number(paymentValues[userId]);
-      if (isNaN(amount) || amount <= 0) {
-        alert('Please enter a valid payment amount');
-        navigate('/SpFailed');
-        return;
-      }
-
-      await addPayment({ userId, amount }).unwrap();
-      alert('Payment added successfully!');
-      setPaymentValues((prevValues) => ({ ...prevValues, [userId]: '' }));
+      await addPayment({ userId, amount, totalFee }).unwrap();
+      alert(`Payment of ₹${amount.toFixed(2)} discount offered! Total Fee: ₹${totalFee}`);
+      setPaymentValues((prevValues) => ({ ...prevValues, [userId]: "" }));
     } catch (error) {
-      console.error('Error adding payment:', error);
-      alert('Failed to add payment.');
+      console.error("Error adding payment:", error);
+      alert("Failed to add payment.");
     }
   };
 
@@ -46,16 +86,16 @@ function Adminboard() {
 
   return (
     <div className="container mt-5">
-      {/* Fixed Title */}
+      
       <div className="row justify-content-center">
         <div className="text-center">
-          <h1 className=" position-fixed top-0 w-100 bg-light py-3 shadow" style={{ zIndex: 1000 }}>
+          <h1 className="position-fixed top-0 w-100 bg-light py-3 shadow" style={{ zIndex: 1000 }}>
             Registered Students
           </h1>
         </div>
       </div>
 
-      {/* Search Bar (Below Fixed Title) */}
+
       <div className="row justify-content-center mb-4 mt-5">
         <div className="col-md-6">
           <input
@@ -68,37 +108,52 @@ function Adminboard() {
         </div>
       </div>
 
-      {/* Loading & Error Messages */}
       {isLoading && <p className="text-center text-muted">Loading Students...</p>}
       {error && <p className="text-center text-danger">Error fetching Students</p>}
 
-      {/* Scrollable Student List */}
+   
       <div className="row" style={{ maxHeight: '500px', overflowY: 'auto' }}>
-        {filteredUsers?.map((user) => (
-          <div key={user._id} className="col-md-4 mb-4">
-            <div className="card shadow-sm">
-              <div className="card-body text-center">
-                <h5 className="card-title">{user.username}</h5>
-                <h6>Email: <span>{user.email}</span></h6>
-                <h6>Mobile: <span>{user.mobileNumber}</span></h6>
-                <h6>Course: <span>{user.selectedCourse}</span></h6>
-                <input
-                  type="number"
-                  value={paymentValues[user._id] || ''}
-                  onChange={(e) => handleChange(user._id, e.target.value)}
-                  placeholder="Enter payment"
-                  className="form-control mt-3 text-center"
-                />
-                <button
-                  onClick={() => handleSubmit(user._id)}
-                  className="btn btn-primary mt-3"
-                >
-                  Save
-                </button>
+        {filteredUsers?.map((user) => {
+          const totalFee = courseFees[user.selectedCourse] || "Not Assigned";
+          return (
+            <div key={user._id} className="col-md-4 mb-4">
+              <div className="card shadow-sm">
+                <div className="card-body text-center">
+                  <h5 className="card-title">{user.username}</h5>
+                  <h6>Email: <span>{user.email}</span></h6>
+                  <h6>Mobile: <span>{user.mobileNumber}</span></h6>
+                  <h6>Course: <span>{user.selectedCourse}</span></h6>
+                  <h6>Total Fee: <span>₹{totalFee !== "Not Assigned" ? totalFee : "Not Available"}</span></h6>
+
+                  <select
+                    className="form-control mt-3"
+                    value={paymentTypes[user._id] || 'amount'}
+                    onChange={(e) => handleTypeChange(user._id, e.target.value)}
+                  >
+                    <option value="amount">Enter Amount (₹)</option>
+                    <option value="percentage">Enter Percentage (%)</option>
+                  </select>
+
+                  
+                  <input
+                    type="number"
+                    value={paymentValues[user._id] || ''}
+                    onChange={(e) => handleChange(user._id, e.target.value)}
+                    placeholder={paymentTypes[user._id] === 'percentage' ? 'Enter percentage (%)' : 'Enter amount (₹)'}
+                    className="form-control mt-2 text-center"
+                  />
+
+                  <button
+                    onClick={() => handleSubmit(user._id, user.selectedCourse)}
+                    className="btn btn-primary mt-3"
+                  >
+                    Save
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

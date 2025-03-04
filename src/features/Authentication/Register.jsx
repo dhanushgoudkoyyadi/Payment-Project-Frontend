@@ -151,13 +151,13 @@ function Register() {
               className="form-input"
             >
               <option value="">Choose a Course</option>
-              <option value="MERN">MERN Stack</option>
-              <option value="MEAN">MEAN Stack</option>
-              <option value="react">Frontend with React</option>
-              <option value="Angular">Frontend with Angular</option>
-              <option value="backend">Backend</option>
-              <option value="Java">Java Full Stack</option>
-              <option value="devops">DevOps</option>
+              <option value="MERN Stack">MERN Stack</option>
+              <option value="MEAN Stack">MEAN Stack</option>
+              <option value="Frontend with React">Frontend with React</option>
+              <option value="Frontend with Angular">Frontend with Angular</option>
+              <option value="Backend">Backend</option>
+              <option value="Java Full Stack">Java Full Stack</option>
+              <option value="Devops">Devops</option>
             </select>
           </div>
 

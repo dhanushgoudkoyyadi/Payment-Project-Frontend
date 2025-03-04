@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const PaymentApi = createApi({
   reducerPath: 'paymentapi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:7777/',
+    baseUrl: 'http://localhost:5557/',
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('token');
       if (token) {
@@ -20,8 +20,8 @@ export const PaymentApi = createApi({
         body: credentials
       })
     }),
-    getUsers:build.query({
-      query:()=>"/users",
+    getUsers: build.query({
+      query: () => "/users",
     }),
 
     login: build.mutation({
@@ -31,11 +31,11 @@ export const PaymentApi = createApi({
         body: credentials
       })
     }),
-    addPayment:build.mutation({
-      query:({userId,amount})=>({
-        url:`/add-payment`,
-        method:'POST',
-        body:  {userId,amount},
+    addPayment: build.mutation({
+      query: ({ userId, amount }) => ({
+        url: `/add-payment`,
+        method: 'POST',
+        body: { userId, amount },
       }),
     }),
 
@@ -44,23 +44,27 @@ export const PaymentApi = createApi({
         url: '/details',
         method: 'POST',
         body: formData,
-        formData: true, 
+        formData: true,
       }),
     }),
 
-    get:build.mutation({
-      query: () => ({
-        url: `/getdetails`,
-        method: 'GET',
-        
+    
+    getOne: build.query({
+      query: (userId) => `/users/${userId}`,
+    }),
+    addup: build.mutation({
+      query: (formData) => ({
+        url: '/addnewcourse',
+        method: 'POST',
+        body: formData,
+        formData: true,
       })
     }),
-    getOne: build.query({
-      query: (userId) => `/users/${userId}`, 
-    }),
+
+
 
   }),
-  
+
 });
 
 export const {
@@ -68,6 +72,7 @@ export const {
   useLoginMutation,
   useSignupMutation,
   useGetUsersQuery,
-  useAddPaymentMutation,useGetOneQuery
+  useAddPaymentMutation,
+  useGetOneQuery,
+  useAddupMutation
 } = PaymentApi;
- 

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useAddMutation } from '../../service/Leads';
 import { jwtDecode } from 'jwt-decode';
-
+import { useNavigate } from 'react-router-dom';
 const FileUpload = () => {
   const [file, setFile] = useState(null);
   const [transactionId,setTransactionId]=useState();
   const[filename,setFilename]=useState('');
   const[amount,setAmount]=useState('');
   const [add] = useAddMutation();
-
+const navigate = useNavigate();
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
@@ -51,6 +51,7 @@ const FileUpload = () => {
       setAmount('');
       setTransactionId('');
       document.getElementById('fileInput').value = '';
+      navigate('/Home');
     }catch (error) {
       console.error('Failed to upload file:', error);
     
@@ -80,7 +81,7 @@ const FileUpload = () => {
           <input type="text" name="amount" id="amount" className="form-input" value={amount} onChange={handleAmountChange} required />
         </div>
         
-        <button type="submit" className="upload-button btn btn-primary">Upload</button>
+        <button type="submit" className="upload-button btn btn-primary" >Upload</button>
       </form>
         </div>
       </div>

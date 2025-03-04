@@ -9,6 +9,7 @@ import SpFailed from './features/Student-Details/SpFailed';
 import Paymentdetails from './features/Home/Paymentdetails';
 import FileUpload from './features/Student-Details/StudentPayment';
 import Home from "./features/Home/Home"
+import AddCourse from './features/Student-Details/AddCourse';
 function App() {
   return (
     <Router>
@@ -24,6 +25,8 @@ function App() {
         <Route path="/FileUpload" element={<FileUpload/>}/>
 
         <Route path="/Home" element={<Home/>}/>
+       
+        
         
       </Routes>
     </Router>
