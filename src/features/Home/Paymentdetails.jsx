@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Paymentdetails.css';
 import { useGetOneQuery } from '../../service/Leads';
 
 import { useSelector } from 'react-redux';
@@ -24,15 +24,10 @@ function PaymentDetails() {
 
     const userId = token ? jwtDecode(token).id : null;
 
-    console.log("User ID:", userId);
-
 
 
     // Fetch student payment details
-
-    const { data: user, error, isLoading, refetch } = useGetOneQuery(userId, { skip: !userId });
-
-    console.log("User:", user);
+    const { data: user, error, isLoading } = useGetOneQuery(userId, { skip: !userId });
 
 
 
@@ -40,68 +35,43 @@ function PaymentDetails() {
 
     const loggedInUser = useSelector((state) => state.auth?.user) || {};
 
-    console.log("Logged-in User:", loggedInUser);
-
-
-
-    if (isLoading) return <div>Loading...</div>;
-
-    if (error) return <div>Error fetching data</div>;
+    if (isLoading) return <div className="loading">Loading...</div>;
+    if (error) return <div className="error-message">Error fetching data</div>;
 
 
 
     const registeredUser = user || {};
 
     const studentPayments = registeredUser.StudentPaymentDetails || [];
-
-    const discountamount = registeredUser.paymentAmount ;
-
-    console.log(discountamount)
+    const discountAmount = registeredUser.paymentAmount || 0;
 
     // Calculate total paid amount
 
     const totalPaidAmount = studentPayments.reduce((sum, payment) => sum + payment.amount, 0);
 
-    console.log(totalPaidAmount)
-
 
 
     // Calculate remaining amount
-
-    const remainingAmount = courseFee - (totalPaidAmount+discountamount);
+    const remainingAmount = courseFee - (totalPaidAmount + discountAmount);
 
 
 
     return (
-
-        <div>
-
-            <h2>Payment Details</h2>
-
+        <div className="container">
+            <h2 className="title">Payment Details</h2>
             {registeredUser.username ? (
-
-                <div style={{ padding: '10px', margin: '10px 0' }}>
-
-                    <h3>Student Name: {registeredUser.username}</h3>
-
-                    <h4>Course Fee: ₹{courseFee}</h4>
-
-                    <h4>Discount: ₹{registeredUser.paymentAmount || 0}</h4>
-
-                    <h4>Total Paid Amount: ₹{totalPaidAmount}</h4>
-
-                    <h4>Amount to be Paid: ₹{remainingAmount > 0 ? remainingAmount : 0}</h4>
-
+                <div className="card">
+                    <h3 className="text">Student Name: {registeredUser.username}</h3>
+                    <h4 className="text">Course Fee: ₹{courseFee}</h4>
+                    <h4 className="text">Discount: ₹{discountAmount}</h4>
+                    <h4 className="text">Total Paid Amount: ₹{totalPaidAmount}</h4>
+                    <h4 className="text">Amount to be Paid: ₹{remainingAmount > 0 ? remainingAmount : 0}</h4>
                 </div>
 
             ) : (
-
-                <h3>No Payment Details Found</h3>
-
+                <h3 className="text">No Payment Details Found</h3>
             )}
-
-            <button onClick={() => navigate("/FileUpload")}>Pay Fee</button>
-
+            <button className="button" onClick={() => navigate("/FileUpload")}>Pay Fee</button>
         </div>
 
     );

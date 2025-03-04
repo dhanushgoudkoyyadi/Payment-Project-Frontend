@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAddPaymentMutation, useGetUsersQuery } from '../../service/Leads';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Adminboard.css';
 import { useNavigate } from 'react-router-dom';
 
 function Adminboard() {

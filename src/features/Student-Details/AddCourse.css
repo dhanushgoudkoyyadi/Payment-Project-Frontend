@@ -1,0 +1,92 @@
+/* General Container */
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0; /* Light Grey */
+    width: 100%;
+}
+
+/* Card */
+.signup-card {
+    background-color: #1a1a4b; /* Navy Blue */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    text-align: center;
+    border: 3px solid #4d8af0; /* Sky Blue */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Form */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Ensures form takes full width */
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+    width: 100%; /* Prevents extra spacing */
+}
+
+/* Labels */
+.form-group label {
+    font-weight: bold;
+    color: #00ff80; /* Neon Green */
+}
+
+/* Input Fields */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #4d8af0; /* Sky Blue */
+    border-radius: 6px;
+    font-size: 16px;
+    color: #1a1a4b; /* Navy Blue */
+    background-color: #f0f0f0; /* Light Grey */
+}
+
+.form-input:focus {
+    border-color: #00ff80; /* Neon Green */
+    outline: none;
+    box-shadow: 0 0 5px #00ff80;
+}
+
+/* Submit Button */
+.signup-button {
+    background-color: #00ff80; /* Neon Green */
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #1a1a4b; /* Navy Blue */
+    width: 100%;
+}
+
+.signup-button:hover {
+    background-color: #4d8af0; /* Sky Blue */
+    color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .signup-card {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .form-input {
+        font-size: 14px;
+    }
+}

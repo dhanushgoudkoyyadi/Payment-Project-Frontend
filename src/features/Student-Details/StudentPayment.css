@@ -1,0 +1,172 @@
+/* FileUpload.css */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0; /* Light Grey */
+}
+
+.card {
+    background-color: #1a1a4b; /* Navy Blue */
+    color: #fffdd0; /* Cream White */
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 400px;
+}
+
+.card-header {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #4d8af0; /* Sky Blue */
+    padding: 10px;
+    border-radius: 8px;
+    color: #fffdd0; /* Cream White */
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fffdd0; /* Cream White */
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #4d8af0; /* Sky Blue */
+    border-radius: 6px;
+    background-color: #f0f0f0; /* Light Grey */
+    color: #1a1a4b; /* Navy Blue */
+    font-size: 16px;
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: #00ff80; /* Neon Green */
+}
+
+.upload-button {
+    background-color: #00ff80; /* Neon Green */
+    color: #1a1a4b; /* Navy Blue */
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.upload-button:hover {
+    background-color: #4d8af0; /* Sky Blue */
+    color: #fffdd0; /* Cream White */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card {
+        width: 90%;
+    }
+}
+/* FileUpload.css */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0; /* Light Grey */
+}
+
+.card {
+    background-color: #1a1a4b; /* Navy Blue */
+    color: #fffdd0; /* Cream White */
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 400px;
+}
+
+.card-header {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #4d8af0; /* Sky Blue */
+    padding: 10px;
+    border-radius: 8px;
+    color: #fffdd0; /* Cream White */
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fffdd0; /* Cream White */
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #4d8af0; /* Sky Blue */
+    border-radius: 6px;
+    background-color: #f0f0f0; /* Light Grey */
+    color: #1a1a4b; /* Navy Blue */
+    font-size: 16px;
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: #00ff80; /* Neon Green */
+}
+
+.upload-button {
+    background-color: #00ff80; /* Neon Green */
+    color: #1a1a4b; /* Navy Blue */
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.upload-button:hover {
+    background-color: #4d8af0; /* Sky Blue */
+    color: #fffdd0; /* Cream White */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card {
+        width: 90%;
+    }
+}

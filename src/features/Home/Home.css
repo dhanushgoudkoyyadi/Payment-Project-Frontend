@@ -1,45 +1,80 @@
-/* Home.css */
-
-body {
-    font-family: Arial, sans-serif;
-}
-
-.navbar {
-    background-color: #f8f9fa;
+/* Remove Bootstrap styles */
+.custom-navbar {
+    width: 100%;
+    background-color: #1a1a4b; /* Navy Blue */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Ensures navbar is always visible */
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 .brand-name {
-    color: blue;
+    color: white;
     font-size: 24px;
+    font-weight: bold;
     text-decoration: none;
 }
 
 .brand-name:hover {
-    text-decoration: none;
-    color: darkblue;
-}
-
-.navbar-toggler {
-    border: none;
+    color: #00ff80; /* Neon Green */
 }
 
 .logout-button {
-    background-color: red;
-    color: white;
+    background-color: #00ff80; /* Neon Green */
+    color: #1a1a4b;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
     border: none;
-    padding: 10px 20px;
-    cursor: pointer;
     border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .logout-button:hover {
-    background-color: darkred;
+    background-color: #4d8af0; /* Sky Blue */
+    color: white;
 }
 
+/* Prevent extra blue box issue */
 .navbar-nav {
+    display: flex;
+    align-items: center;
     margin-left: auto;
 }
 
-.nav-item {
-    margin-left: 10px;
+/* Adjust layout */
+.home-container {
+    margin-top: 80px; /* Prevents content from being hidden behind navbar */
+    padding: 20px;
+    background-color: #f0f0f0; /* Light Grey */
+    min-height: 100vh;
+}
+
+/* Center user info */
+.user-info-container {
+    text-align: center;
+    margin:60px ;
+    
+}
+
+.user-info {
+    color: #1a1a4b;
+}
+
+.email {
+    color: #333;
+}
+
+/* Layout for details */
+.details-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
 }
