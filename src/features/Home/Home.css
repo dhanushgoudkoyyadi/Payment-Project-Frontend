@@ -1,7 +1,7 @@
 /* Remove Bootstrap styles */
 .custom-navbar {
     width: 100%;
-    background-color: #1a1a4b; /* Navy Blue */
+    background-color: #8a2be2; /* Navy Blue */
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
@@ -24,8 +24,8 @@
 }
 
 .logout-button {
-    background-color: #00ff80; /* Neon Green */
-    color: #1a1a4b;
+    background-color: #500576; /* Neon Green */
+    color: white;
     padding: 10px 15px;
     font-size: 16px;
     font-weight: bold;
@@ -36,7 +36,7 @@
 }
 
 .logout-button:hover {
-    background-color: #4d8af0; /* Sky Blue */
+    background-color: red; /* Sky Blue */
     color: white;
 }
 

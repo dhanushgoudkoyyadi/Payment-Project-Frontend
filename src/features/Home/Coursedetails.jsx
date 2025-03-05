@@ -19,18 +19,25 @@ function Coursedetails() {
     if (error) return <div>Error fetching data</div>;
 
     const registeredUser = user || {};
+    const newcourse=registeredUser.newCourseDetails
 
     return (
         <div className="container">
             <h3 className="title">Course Details</h3>
-            {registeredUser.selectedCourse ? (
+            {(registeredUser.selectedCourse && newcourse) ? (
                 <div className="card">
-                    <h5 className="text">Course: {registeredUser.selectedCourse}</h5>
-                    <button className="button" onClick={() => navigate("/AddCourse")}>Add New Course</button>
+                    <h5 className="text">Course: {registeredUser.selectedCourse}
+                        
+                    </h5>
+                    <h5 className="text">NewCourses:   {newcourse.map((course)=>(
+                        <li>{course.course.toUpperCase()}</li>
+                    ))}</h5>
+                    
                 </div>
             ) : (
                 <h5 className="text">No Course Details Found</h5>
             )}
+            <button className="button" onClick={() => navigate("/AddCourse")}>Add New Course</button>
         </div>
     );
 }
