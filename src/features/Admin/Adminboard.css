@@ -1,192 +1,197 @@
 /* Adminboard Component - Custom Styling */
 
 .adminboard-container {
-    padding: 20px;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.adminboard-title {
+  font-weight: 600;
+  color: #6a11cb;
+  background-color: white !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.adminboard-search-input {
+  border-radius: 20px;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.adminboard-search-input:focus {
+  border-color: #8a2be2;
+  box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+  outline: none;
+}
+
+.adminboard-loading,
+.adminboard-error {
+  font-size: 16px;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+.adminboard-error {
+  background-color: rgba(231, 76, 60, 0.1);
+}
+
+.adminboard-students-container {
+  margin-top: 20px;
+  padding-right: 5px;
+}
+
+.adminboard-students-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.adminboard-students-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.adminboard-students-container::-webkit-scrollbar-thumb {
+  background: #8a2be2;
+  border-radius: 10px;
+}
+
+.adminboard-student-card {
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  border: none;
+  height: 100%;
+}
+
+.adminboard-student-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.adminboard-card-body {
+  padding: 20px;
+}
+
+.adminboard-student-name {
+  color: #6a11cb;
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+/* Align all <h6> elements */
+.adminboard-student-email,
+.adminboard-student-mobile,
+.adminboard-student-course,
+.adminboard-student-fee {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px; /* Space between label and value */
+}
+
+.adminboard-student-email span,
+.adminboard-student-mobile span,
+.adminboard-student-course span,
+.adminboard-student-fee span {
+  font-weight: 500;
+  color: black;
+  text-align: right; /* Align values to the right */
+  flex: 1; /* Allow values to take remaining space */
+}
+
+.adminboard-payment-type {
+  border-radius: 5px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+}
+
+.adminboard-payment-type:focus {
+  border-color: #8a2be2;
+  box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+  outline: none;
+}
+
+.adminboard-payment-input {
+  border-radius: 5px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+}
+
+.adminboard-payment-input:focus {
+  border-color: #8a2be2;
+  box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+  outline: none;
+}
+
+.adminboard-save-btn {
+  background: linear-gradient(135deg, #6a11cb 0%, #8a2be2 100%);
+  border: none;
+  border-radius: 5px;
+  padding: 8px 20px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.adminboard-save-btn:hover {
+  background: linear-gradient(135deg, #5a0cb1 0%, #7a1bd2 100%);
+  transform: translateY(-2px);
+}
+
+.adminboard-save-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .adminboard-student-col {
+    flex: 0 0 50%;
+    max-width: 50%;
   }
-  
+}
+
+@media (max-width: 768px) {
   .adminboard-title {
-    font-weight: 600;
-    color: #6a11cb;
-    background-color: white !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+    font-size: 24px;
   }
-  
-  .adminboard-search-input {
-    border-radius: 20px;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+
+  .adminboard-search-col {
+    width: 80%;
   }
-  
-  .adminboard-search-input:focus {
-    border-color: #8a2be2;
-    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
-    outline: none;
+
+  .adminboard-student-col {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
-  
-  .adminboard-loading,
-  .adminboard-error {
-    font-size: 16px;
-    padding: 15px;
-    border-radius: 5px;
-    margin: 20px 0;
+}
+
+@media (max-width: 576px) {
+  .adminboard-title {
+    font-size: 20px;
+    padding: 10px 0 !important;
   }
-  
-  .adminboard-error {
-    background-color: rgba(231, 76, 60, 0.1);
+
+  .adminboard-search-col {
+    width: 90%;
   }
-  
-  .adminboard-students-container {
-    margin-top: 20px;
-    padding-right: 5px;
-  }
-  
-  .adminboard-students-container::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  .adminboard-students-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-  }
-  
-  .adminboard-students-container::-webkit-scrollbar-thumb {
-    background: #8a2be2;
-    border-radius: 10px;
-  }
-  
-  .adminboard-student-card {
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-    border: none;
-    height: 100%;
-  }
-  
-  .adminboard-student-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
-  }
-  
+
   .adminboard-card-body {
-    padding: 20px;
+    padding: 15px;
   }
-  
+
   .adminboard-student-name {
-    color: #6a11cb;
-    font-weight: 600;
-    margin-bottom: 15px;
-    font-size: 18px;
+    font-size: 16px;
   }
-  
+
   .adminboard-student-email,
   .adminboard-student-mobile,
   .adminboard-student-course,
   .adminboard-student-fee {
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: white;
+    font-size: 13px;
   }
-  
-  .adminboard-student-email span,
-  .adminboard-student-mobile span,
-  .adminboard-student-course span,
-  .adminboard-student-fee span {
-    font-weight: 500;
-    color: white;
-  }
-  
-  .adminboard-payment-type {
-    border-radius: 5px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-  }
-  
-  .adminboard-payment-type:focus {
-    border-color: #8a2be2;
-    box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
-    outline: none;
-  }
-  
-  .adminboard-payment-input {
-    border-radius: 5px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-  }
-  
-  .adminboard-payment-input:focus {
-    border-color: #8a2be2;
-    box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
-    outline: none;
-  }
-  
-  .adminboard-save-btn {
-    background: linear-gradient(135deg, #6a11cb 0%, #8a2be2 100%);
-    border: none;
-    border-radius: 5px;
-    padding: 8px 20px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-  }
-  
-  .adminboard-save-btn:hover {
-    background: linear-gradient(135deg, #5a0cb1 0%, #7a1bd2 100%);
-    transform: translateY(-2px);
-  }
-  
-  .adminboard-save-btn:active {
-    transform: translateY(0);
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 992px) {
-    .adminboard-student-col {
-      flex: 0 0 50%;
-      max-width: 50%;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .adminboard-title {
-      font-size: 24px;
-    }
-  
-    .adminboard-search-col {
-      width: 80%;
-    }
-  
-    .adminboard-student-col {
-      flex: 0 0 100%;
-      max-width: 100%;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .adminboard-title {
-      font-size: 20px;
-      padding: 10px 0 !important;
-    }
-  
-    .adminboard-search-col {
-      width: 90%;
-    }
-  
-    .adminboard-card-body {
-      padding: 15px;
-    }
-  
-    .adminboard-student-name {
-      font-size: 16px;
-    }
-  
-    .adminboard-student-email,
-    .adminboard-student-mobile,
-    .adminboard-student-course,
-    .adminboard-student-fee {
-      font-size: 13px;
-    }
-  }
-  
-  
+}

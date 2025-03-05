@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import { useGetOneQuery } from '../../service/Leads';
 import { useSelector } from 'react-redux';
 import Coursedetails from './Coursedetails';
@@ -16,30 +16,44 @@ function Home() {
     const loggedInUser = useSelector((state) => state.auth?.user) || {};
     const registeredUser = user || {};
 
+    const [isNavCollapsed, setIsNavCollapsed] = useState(false);
+
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/Login');
     };
 
-    if (isLoading) return <div className="loading">Loading...</div>;
-    if (error) return <div className="error-message">Error fetching data</div>;
+    const toggleNav = () => {
+        setIsNavCollapsed(!isNavCollapsed);
+    };
+
+    if (isLoading) return <div className="loading-home">Loading...</div>;
+    if (error) return <div className="error-message-home">Error fetching data</div>;
 
     return (
-        <div className="home-container">
+        <div className="home-container-custom">
             {/* Navbar */}
-            <nav className="custom-navbar">
-                <Link to="/" className="brand-name">Edupoly</Link>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+            <nav className="custom-navbar-home">
+                <Link to="/" className="brand-name-home">Edupoly</Link>
+                <button className="navbar-toggler-home" type="button" onClick={toggleNav}>
+                    <span className="navbar-toggler-icon-home"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <button onClick={handleLogout} className="logout-button">Log Out</button>
+                <div className={`navbar-collapse-home ${isNavCollapsed ? 'active' : ''}`}>
+                    <ul className="navbar-nav-home">
+                        <button onClick={handleLogout} className="logout-button-home">Log Out</button>
                     </ul>
                 </div>
             </nav>
-           <Coursedetails></Coursedetails>
-           <PaymentDetails></PaymentDetails>
+
+            {/* Main Content */}
+            <div className="main-content-home">
+                <div className="component-card-home">
+                    <Coursedetails />
+                </div>
+                <div className="component-card-home">
+                    <PaymentDetails />
+                </div>
+            </div>
         </div>
     );
 }

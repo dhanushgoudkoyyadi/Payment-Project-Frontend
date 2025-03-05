@@ -22,9 +22,12 @@ function Coursedetails() {
 
     return (
         <div className="course-container">
+            <h1>Welcome {registeredUser.username}!</h1>
+            <p><b>Email:</b>{registeredUser.email}</p>
             <h3 className="course-title">Course Details</h3>
             {registeredUser.selectedCourse ? (
                 <div className="course-card">
+                    
                     <h5 className="course-text">Course: {registeredUser.selectedCourse}</h5>
                     <h5 className="course-text">New Course: {registeredUser.selectedCourse}</h5>
                     <button className="course-button" onClick={() => navigate("/AddCourse")}>Add New Course</button>
