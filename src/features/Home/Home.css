@@ -1,0 +1,140 @@
+/* General Styling */
+.home-container {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    color: #4a148c;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px; /* Prevent overlap with navbar */
+}
+
+/* Navbar Styles */
+.custom-navbar {
+    background-color: #4a148c; /* Purple background */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Keep navbar on top */
+}
+
+.brand-name {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.logout-button {
+    background-color: #7c43bd; /* Lighter purple */
+    color: #ffffff;
+    border: none;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #6a1b9a; /* Darker purple */
+}
+
+/* User Info Centered */
+.user-info-container {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.user-info {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.email {
+    font-size: 20px;
+    color: #6a1b9a;
+}
+
+/* Two Components - More Width and Spacing */
+.details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 99%; /* Increased width of the container */
+    height: 65vh; /* Increased height */
+    margin-top: 20px;
+    gap: 40px; /* Space between both components */
+}
+
+/* Each Component - Increased Width & Height */
+.details-container > div {
+    width: 100%; /* Increased width */
+    height: 100%;
+    padding: 30px; /* More padding for spacing */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes content to top and button to bottom */
+    align-items: center;
+    border: 3px solid #4a148c; /* Thicker border */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1); /* Added shadow for better visibility */
+    border-radius: 10px; /* Rounded edges */
+    background-color: #f3e5f5; /* Light purple background */
+    box-sizing: border-box;
+}
+
+/* Button Styling - Inside the Box */
+.details-container button {
+    background-color: #7c43bd;
+    color: #ffffff;
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    margin-top: auto; /* Pushes button to bottom */
+    width: 95%; /* Buttons take more width inside the box */
+    text-align: center;
+}
+
+.details-container button:hover {
+    background-color: #6a1b9a;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .custom-navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logout-button {
+        margin-top: 10px;
+    }
+
+    /* Stack Components on Mobile */
+    .details-container {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        gap: 20px; /* Reduce gap for mobile */
+    }
+
+    .details-container > div {
+        width: 95%; /* Bigger width on mobile */
+        height: auto; /* Allow natural height */
+        padding: 20px;
+    }
+
+    /* Center Buttons in Mobile */
+    .details-container button {
+        width: 100%;
+    }
+}

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import { useGetOneQuery } from '../../service/Leads';
 import { useSelector } from 'react-redux';
 import Coursedetails from './Coursedetails';
@@ -16,43 +16,35 @@ function Home() {
     const loggedInUser = useSelector((state) => state.auth?.user) || {};
     const registeredUser = user || {};
 
-    const [isNavCollapsed, setIsNavCollapsed] = useState(false);
-
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/Login');
     };
 
-    const toggleNav = () => {
-        setIsNavCollapsed(!isNavCollapsed);
-    };
-
-    if (isLoading) return <div className="loading-home">Loading...</div>;
-    if (error) return <div className="error-message-home">Error fetching data</div>;
+    if (isLoading) return <div className="loading">Loading...</div>;
+    if (error) return <div className="error-message">Error fetching data</div>;
 
     return (
-        <div className="home-container-custom">
+        <div className="home-container">
             {/* Navbar */}
-            <nav className="custom-navbar-home">
-                <Link to="/" className="brand-name-home">Edupoly</Link>
-                <button className="navbar-toggler-home" type="button" onClick={toggleNav}>
-                    <span className="navbar-toggler-icon-home"></span>
-                </button>
-                <div className={`navbar-collapse-home ${isNavCollapsed ? 'active' : ''}`}>
-                    <ul className="navbar-nav-home">
-                        <button onClick={handleLogout} className="logout-button-home">Log Out</button>
-                    </ul>
-                </div>
+            <nav className="custom-navbar">
+                <Link to="/" className="brand-name">Edupoly</Link>
+                <button onClick={handleLogout} className="logout-button">Log Out</button>
             </nav>
 
-            {/* Main Content */}
-            <div className="main-content-home">
-                <div className="component-card-home">
-                    <Coursedetails />
-                </div>
-                <div className="component-card-home">
-                    <PaymentDetails />
-                </div>
+            {/* User Info */}
+            
+            <div>
+            <div className="user-info-container">
+                <h2 className="user-info">Welcome {registeredUser.username?.toUpperCase()}</h2>
+                <h3 className="email">Email: {registeredUser.email}</h3>
+            </div>
+            {/* Course and Payment Details */}
+            <div className="details-container">
+                
+                <Coursedetails />
+                <PaymentDetails />
+            </div>
             </div>
         </div>
     );
