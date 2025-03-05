@@ -2,27 +2,27 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 import { useGetOneQuery } from '../../service/Leads';
-import { useSelector } from 'react-redux';
 import Coursedetails from './Coursedetails';
 import PaymentDetails from './Paymentdetails';
+
 import './Home.css';
 
 function Home() {
-    const token = localStorage.getItem("token");
-    const userId = token ? jwtDecode(token).id : null;
+    // const token = localStorage.getItem("token");
+    // const userId = token ? jwtDecode(token).id : null;
     const navigate = useNavigate();
-    const { data: user, error, isLoading } = useGetOneQuery(userId, { skip: !userId });
+    // const { data: user, error, isLoading } = useGetOneQuery(userId, { skip: !userId });
 
-    const loggedInUser = useSelector((state) => state.auth?.user) || {};
-    const registeredUser = user || {};
+   
+    // const registeredUser = user || {};
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/Login');
     };
 
-    if (isLoading) return <div className="loading">Loading...</div>;
-    if (error) return <div className="error-message">Error fetching data</div>;
+    // if (isLoading) return <div className="loading">Loading...</div>;
+    // if (error) return <div className="error-message">Error fetching data</div>;
 
     return (
         <div className="home-container">
@@ -40,6 +40,7 @@ function Home() {
             </nav>
            <Coursedetails></Coursedetails>
            <PaymentDetails></PaymentDetails>
+         
         </div>
     );
 }

@@ -3,7 +3,7 @@ import { useAddPaymentMutation, useGetUsersQuery } from "../../service/Leads"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./Adminboard.css"
 import { useNavigate } from "react-router-dom"
-
+import Reactc from "../Coheart/Reactc"
 function Adminboard() {
   const { data: users, error, isLoading } = useGetUsersQuery()
   const [addPayment] = useAddPaymentMutation()
@@ -157,6 +157,7 @@ function Adminboard() {
           )
         })}
       </div>
+      <Reactc></Reactc>
     </div>
   )
 }
