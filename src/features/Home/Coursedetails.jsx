@@ -3,7 +3,7 @@ import './Coursedetails.css';
 import { useGetOneQuery } from '../../service/Leads';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 
 function Coursedetails() {
     const token = localStorage.getItem("token");
@@ -35,7 +35,7 @@ function Coursedetails() {
                     
                 </div>
             ) : (
-                <h5 className="text">No Course Details Found</h5>
+                <h5 className="course-text">No Course Details Found</h5>
             )}
             <button className="button" onClick={() => navigate("/AddCourse")}>Add New Course</button>
         </div>

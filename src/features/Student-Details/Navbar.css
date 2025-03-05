@@ -1,6 +1,6 @@
 /* Navbar Styles */
 .navbar {
-    background-color: #1a1a4b !important;
+    background-color: #8a2be2;
     padding: 20px; /* Increased padding for more height */
     width: 100vw; /* Ensures full width */
     min-height: 80px; /* Increased height */
@@ -9,7 +9,7 @@
 /* Edupoly Brand */
 .navbar-brand {
     color: white !important; /* White text */
-    font-size: 28px; /* Slightly bigger font */
+    font-size: 50px; /* Slightly bigger font */
     font-weight: bold;
     text-decoration: none;
     padding-left: 20px; /* Adjusted for better spacing */
@@ -44,7 +44,7 @@
 
 .nav-link {
     color: #f0f0f0 !important;
-    font-size: 20px; /* Bigger text */
+    font-size: 50px; /* Bigger text */
     font-weight: bold;
     transition: 0.3s;
 }

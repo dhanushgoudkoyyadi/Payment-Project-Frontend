@@ -1,8 +1,19 @@
-.container {
-    background-color: #f0f0f0;
+/* Coursedetails.css */
+
+.course-container {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     padding: 20px;
-    border-radius: 8px;
+  }
+  
+  .course-card {
+    background-color: #fff;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
     max-width: 600px;
     margin: 0 auto;
 }
@@ -30,8 +41,30 @@
     color: white; /* Navy Blue */
     padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    display: block;
-    margin: 20px auto 0;
-}
+    text-align: center;
+  }
+  
+  .course-button:hover {
+    background-color: #560bad;
+  }
+  
+  @media (max-width: 600px) {
+    .course-card {
+      padding: 15px;
+    }
+  
+    .course-title {
+      font-size: 20px;
+    }
+  
+    .course-text {
+      font-size: 14px;
+    }
+  
+    .course-button {
+      padding: 8px 15px;
+    }
+  }
+  

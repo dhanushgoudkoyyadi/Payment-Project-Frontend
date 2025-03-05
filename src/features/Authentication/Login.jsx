@@ -1,82 +1,92 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import login1 from '../images/login.png';
-import { useLoginMutation } from "../../service/Leads";
+
+
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import login1 from "../images/login.png"
+import { useLoginMutation } from "../../service/Leads"
 import "./Login.css"
+
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [login, { isLoading, error }] = useLoginMutation();
-  const navigate = useNavigate();
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [login, { isLoading, error }] = useLoginMutation()
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (password !== confirmPassword) {
-      alert("Passwords do not match. Please try again.");
-      return;
+      alert("Passwords do not match. Please try again.")
+      return
     }
     try {
-      const response = await login({ username, password }).unwrap();
-      localStorage.setItem("token", response.token);
-      navigate("/Home");
+      const response = await login({ username, password }).unwrap()
+      localStorage.setItem("token", response.token)
+      navigate("/Home")
     } catch (err) {
-      console.error("Login error:", err);
+      console.error("Login error:", err)
     }
-  };
+  }
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <div className="form-section">
-          <h1 className="login-title">Welcome Back</h1>
-          <form onSubmit={handleSubmit} className="login-form">
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
+    <div className="user-login-container">
+      <div className="user-login-card">
+        <div className="user-login-form-section">
+          <h1 className="user-login-title">Welcome Back</h1>
+          <form onSubmit={handleSubmit} className="user-login-form">
+            <div className="user-login-form-group">
+              <label htmlFor="username" className="user-login-label">
+                Username
+              </label>
               <input
                 id="username"
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                className="form-input"
+                className="user-login-input"
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
+            <div className="user-login-form-group">
+              <label htmlFor="password" className="user-login-label">
+                Password
+              </label>
               <input
                 id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="form-input"
+                className="user-login-input"
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="confirmPassword">Confirm Password</label>
+            <div className="user-login-form-group">
+              <label htmlFor="confirmPassword" className="user-login-label">
+                Confirm Password
+              </label>
               <input
                 id="confirmPassword"
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                className="form-input"
+                className="user-login-input"
               />
             </div>
-            <button type="submit" disabled={isLoading} className="login-button">
+            <button type="submit" disabled={isLoading} className="user-login-button">
               {isLoading ? "Logging in..." : "Login"}
             </button>
           </form>
-          {error && <p className="error-message">{error.data?.message || "An error occurred. Please try again."}</p>}
+          {error && <p className="user-login-error">{error.data?.message || "An error occurred. Please try again."}</p>}
         </div>
 
-        <div className="image-section">
-          <img src={login1} alt="Login" className="login-image" />
+        <div className="user-login-image-section">
+          <img src={login1 || "/placeholder.svg"} alt="Login" className="user-login-image" />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
+
