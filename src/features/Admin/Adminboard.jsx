@@ -11,10 +11,16 @@ function Adminboard() {
   const [paymentTypes, setPaymentTypes] = useState({})
   const [search, setSearch] = useState("")
   const navigate = useNavigate()
+  console.log(users);
   const courseFees = {
     "MEAN Stack": 35000,
     "MERN Stack": 35000,
     "Frontend with Angular": 25000,
+    "Frontend with React":25000,
+    "Backend":20000,
+    "Java Full Stack":35000,
+    "Devops":20000,
+    "Python":15000
   }
 
   const handleChange = (userId, value) => {

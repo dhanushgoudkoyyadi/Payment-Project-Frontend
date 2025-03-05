@@ -158,6 +158,8 @@ function Register() {
               <option value="Backend">Backend</option>
               <option value="Java Full Stack">Java Full Stack</option>
               <option value="Devops">Devops</option>
+              <option value="Python">Python</option>
+
             </select>
           </div>
 

@@ -38,7 +38,7 @@
 
 .button {
     background-color: #8a2be2; /* Neon Green */
-    color: white; /* Navy Blue */
+    color: black; /* Navy Blue */
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -47,7 +47,7 @@
   }
   
   .course-button:hover {
-    background-color: #560bad;
+    background-color: #0b0314;
   }
   
   @media (max-width: 600px) {

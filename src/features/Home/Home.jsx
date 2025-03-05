@@ -8,13 +8,13 @@ import PaymentDetails from './Paymentdetails';
 import './Home.css';
 
 function Home() {
-    // const token = localStorage.getItem("token");
-    // const userId = token ? jwtDecode(token).id : null;
+    const token = localStorage.getItem("token");
+    const userId = token ? jwtDecode(token).id : null;
     const navigate = useNavigate();
-    // const { data: user, error, isLoading } = useGetOneQuery(userId, { skip: !userId });
+    const { data: user, error, isLoading } = useGetOneQuery(userId, { skip: !userId });
 
    
-    // const registeredUser = user || {};
+     const registeredUser = user || {};
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -29,18 +29,23 @@ function Home() {
             {/* Navbar */}
             <nav className="custom-navbar">
                 <Link to="/" className="brand-name">Edupoly</Link>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <button onClick={handleLogout} className="logout-button">Log Out</button>
-                    </ul>
-                </div>
+                <button onClick={handleLogout} className="logout-button">Log Out</button>
             </nav>
-           <Coursedetails></Coursedetails>
-           <PaymentDetails></PaymentDetails>
-         
+
+            {/* User Info */}
+            
+            <div>
+            <div className="user-info-container">
+                <h2 className="user-info">Welcome {registeredUser.username?.toUpperCase()}</h2>
+                <h3 className="email">Email: {registeredUser.email}</h3>
+            </div>
+            {/* Course and Payment Details */}
+            <div className="details-container">
+                
+                <Coursedetails />
+                <PaymentDetails />
+            </div>
+            </div>
         </div>
     );
 }
