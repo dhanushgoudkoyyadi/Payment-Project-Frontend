@@ -24,7 +24,7 @@ function Coursedetails() {
     return (
         <div className="container">
             <h3 className="title">Course Details</h3>
-            {(registeredUser.selectedCourse && newcourse) ? (
+            {(registeredUser.selectedCourse || newcourse.course) ? (
                 <div className="card">
                     <h5 className="text">Course: {registeredUser.selectedCourse}
                         
