@@ -1,30 +1,34 @@
 import React from 'react'
 import { useGetUsersQuery } from '../../service/Leads'
-function Reactc() {
+
+function Mern() {
     const { data: users } = useGetUsersQuery()
-    const ReactStackStudents = users ? users.filter(student => 
-        student.selectedCourse === "Frontend with React" || 
+    
+    
+    const meanStackStudents = users ? users.filter(student => 
+        student.selectedCourse === "Mern Stack" || 
         (student.newCourseDetails && 
-         student.newCourseDetails.some(course => course.course === "react"))
+         student.newCourseDetails.some(course => course.course === "MERN"))
     ) : [];
+
     return (
-        <div>
-            <h1>React Stack Students</h1>
+        <div className='tech-card'>
+            <h1 className='tech-title'>MEAN Stack Students</h1>
             <div>
-                {ReactStackStudents.length > 0 ? (
+                {meanStackStudents.length > 0 ? (
                     <ul>
-                        {ReactStackStudents.map(student => (
+                        {meanStackStudents.map(student => (
                             <li key={student._id}>
                                 {student.username} 
                             </li>
                         ))}
                     </ul>
                 ) : (
-                    <p>No React Stack students found</p>
+                    <p>No Mern students found</p>
                 )}
             </div>
         </div>
     )
 }
 
-export default Reactc
+export default Mern

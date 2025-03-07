@@ -122,6 +122,7 @@ function AddCourse() {
               <option value="backend">Backend</option>
               <option value="Java">Java Full Stack</option>
               <option value="devops">DevOps</option>
+              <option value="Python">Python</option>
             </select>
           </div>
 

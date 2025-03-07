@@ -21,8 +21,8 @@ function Home() {
         navigate('/Login');
     };
 
-    // if (isLoading) return <div className="loading">Loading...</div>;
-    // if (error) return <div className="error-message">Error fetching data</div>;
+    if (isLoading) return <div className="loading">Loading...</div>;
+    if (error) return <div className="error-message">Error fetching data</div>;
 
     return (
         <div className="home-container">
