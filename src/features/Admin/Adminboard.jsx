@@ -107,8 +107,10 @@ function Adminboard() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+          <button onClick={()=>navigate("/cohorts")}>Cohorts</button>
         </div>
       </div>
+      
 
       {isLoading && <p className="adminboard-loading text-center text-muted">Loading Students...</p>}
       {error && <p className="adminboard-error text-center text-danger">Error fetching Students</p>}
@@ -150,7 +152,6 @@ function Adminboard() {
                     placeholder={paymentTypes[user._id] === "percentage" ? "Enter percentage (%)" : "Enter amount (₹)"}
                     className="adminboard-payment-input form-control mt-2 text-center"
                   />
-
                   <button
                     onClick={() => handleSubmit(user._id, user.selectedCourse)}
                     className="adminboard-save-btn btn btn-primary mt-3"
@@ -163,7 +164,7 @@ function Adminboard() {
           )
         })}
       </div>
-      <Reactc></Reactc>
+      {/* <Reactc></Reactc> */}
     </div>
   )
 }
