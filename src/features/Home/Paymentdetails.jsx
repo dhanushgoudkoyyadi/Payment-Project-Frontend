@@ -2,10 +2,7 @@ import React from 'react';
 import './Paymentdetails.css';
 import { useGetOneQuery } from '../../service/Leads';
 
-import { useSelector } from 'react-redux';
-
 import { useNavigate } from 'react-router-dom';
-
 import { jwtDecode } from "jwt-decode";
 
 
@@ -13,7 +10,6 @@ import { jwtDecode } from "jwt-decode";
 function PaymentDetails() {
 
     const navigate = useNavigate();
-
     const courseFee = 35000;
 
 
@@ -31,9 +27,7 @@ function PaymentDetails() {
 
 
 
-    // Redux state for logged-in user
-
-    const loggedInUser = useSelector((state) => state.auth?.user) || {};
+    
 
     if (isLoading) return <div className="loading">Loading...</div>;
     if (error) return <div className="error-message">Error fetching data</div>;

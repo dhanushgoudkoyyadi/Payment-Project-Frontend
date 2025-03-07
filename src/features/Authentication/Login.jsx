@@ -1,10 +1,10 @@
-
+import React from "react";
 
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import login1 from "../images/login.png"
 import { useLoginMutation } from "../../service/Leads"
-import "./Login.css"
+import "./Login.css";
 
 const Login = () => {
   const [username, setUsername] = useState("")

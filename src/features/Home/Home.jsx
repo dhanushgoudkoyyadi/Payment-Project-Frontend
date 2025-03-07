@@ -2,9 +2,9 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 import { useGetOneQuery } from '../../service/Leads';
-import { useSelector } from 'react-redux';
 import Coursedetails from './Coursedetails';
 import PaymentDetails from './Paymentdetails';
+
 import './Home.css';
 
 function Home() {
@@ -13,8 +13,8 @@ function Home() {
     const navigate = useNavigate();
     const { data: user, error, isLoading } = useGetOneQuery(userId, { skip: !userId });
 
-    const loggedInUser = useSelector((state) => state.auth?.user) || {};
-    const registeredUser = user || {};
+   
+     const registeredUser = user || {};
 
     const handleLogout = () => {
         localStorage.removeItem('token');

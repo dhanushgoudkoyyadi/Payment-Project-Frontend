@@ -3,7 +3,8 @@ import { useAddPaymentMutation, useGetUsersQuery } from "../../service/Leads"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./Adminboard.css"
 import { useNavigate } from "react-router-dom"
-
+import Reactc from "../Coheart/Reactc"
+import Angular from "../Coheart/Angular"
 function Adminboard() {
   const { data: users, error, isLoading } = useGetUsersQuery()
   const [addPayment] = useAddPaymentMutation()
@@ -11,10 +12,16 @@ function Adminboard() {
   const [paymentTypes, setPaymentTypes] = useState({})
   const [search, setSearch] = useState("")
   const navigate = useNavigate()
+  console.log(users);
   const courseFees = {
     "MEAN Stack": 35000,
     "MERN Stack": 35000,
     "Frontend with Angular": 25000,
+    "Frontend with React":25000,
+    "Backend":20000,
+    "Java Full Stack":35000,
+    "Devops":20000,
+    "Python":15000
   }
 
   const handleChange = (userId, value) => {
@@ -157,6 +164,8 @@ function Adminboard() {
           )
         })}
       </div>
+      <Reactc></Reactc>
+      <Angular></Angular>
     </div>
   )
 }
