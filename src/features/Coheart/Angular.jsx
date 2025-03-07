@@ -1,14 +1,14 @@
 import React from 'react'
 import { useGetUsersQuery } from '../../service/Leads'
 
-function Reactc() {
+function Angular() {
     const { data: users } = useGetUsersQuery()
     
     
     const meanStackStudents = users ? users.filter(student => 
-        student.selectedCourse === "Frontend with React" || 
+        student.selectedCourse === "Frontend with Angular" || 
         (student.newCourseDetails && 
-         student.newCourseDetails.some(course => course.course === "react"))
+         student.newCourseDetails.some(course => course.course === "Angular"))
     ) : [];
 
     return (
@@ -24,11 +24,11 @@ function Reactc() {
                         ))}
                     </ul>
                 ) : (
-                    <p>No React students found</p>
+                    <p>No Angular students found</p>
                 )}
             </div>
         </div>
     )
 }
 
-export default Reactc
+export default Angular

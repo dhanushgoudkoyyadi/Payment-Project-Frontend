@@ -1,14 +1,14 @@
 import React from 'react'
 import { useGetUsersQuery } from '../../service/Leads'
 
-function Reactc() {
+function Mern() {
     const { data: users } = useGetUsersQuery()
     
     
     const meanStackStudents = users ? users.filter(student => 
-        student.selectedCourse === "Frontend with React" || 
+        student.selectedCourse === "Mern Stack" || 
         (student.newCourseDetails && 
-         student.newCourseDetails.some(course => course.course === "react"))
+         student.newCourseDetails.some(course => course.course === "MERN"))
     ) : [];
 
     return (
@@ -31,4 +31,4 @@ function Reactc() {
     )
 }
 
-export default Reactc
+export default Mern
