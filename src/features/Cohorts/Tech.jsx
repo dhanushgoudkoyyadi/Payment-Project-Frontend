@@ -1,26 +1,36 @@
-import React from 'react';
-import Angular from './Angular';
-import Backend from './Backend';
-import Devops from './Devops';
-import Java from './Java';
-import Mean from './Mean';
-import Mern from './Mern';
-import Python from './Python';
-import Reactc from './Reactc';
+import React, { useState } from 'react';
 import './Tech.css';
+
 function Tech() {
+  const [cohort, setCohort] = useState(''); 
+  const [savedCohorts, setSavedCohorts] = useState([]); 
+
+  const handleSave = () => {
+    if (cohort.trim() !== '') { 
+      setSavedCohorts([...savedCohorts, cohort]); 
+      setCohort(''); 
+    }
+  };
+
   return (
     <div className='tech-container'>
-      <Angular></Angular>
-      <Backend></Backend>
-      <Devops></Devops>
-      <Java></Java>
-      <Mean></Mean>
-      <Mern></Mern>
-      <Python></Python>
-      <Reactc></Reactc>
+      <input
+        type="text"
+        placeholder='Enter Cohort'
+        value={cohort}
+        onChange={(e) => setCohort(e.target.value)} 
+      />
+      <button onClick={handleSave}>Save</button>
+      <div>
+        <h3>Saved Cohorts:</h3>
+        <ul>
+          {savedCohorts.map((item, index) => (
+            <li key={index}>{item}</li> 
+          ))}
+        </ul>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Tech
+export default Tech;
