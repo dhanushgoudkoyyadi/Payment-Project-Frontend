@@ -61,6 +61,14 @@ export const PaymentApi = createApi({
       })
     }),
 
+    addTech: build.mutation({
+      query: (formData) => ({
+        url: '/addtech',
+        method: 'POST',
+        body: formData,
+        formData: true,
+      })
+    }),
 
 
   }),
@@ -74,5 +82,6 @@ export const {
   useGetUsersQuery,
   useAddPaymentMutation,
   useGetOneQuery,
-  useAddupMutation
+  useAddupMutation,
+  useAddTechMutation
 } = PaymentApi;
