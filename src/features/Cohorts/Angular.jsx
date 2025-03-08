@@ -12,13 +12,13 @@ function Angular() {
     ) : [];
     return (
         <div className='tech-card'>
-            <h1 className='tech-title'>Angular Students</h1>
+            <h1 className='tech-title'> ANGULAR </h1>
             <div>
                 {meanStackStudents.length > 0 ? (
                     <ul>
                         {meanStackStudents.map(student => (
                             <li key={student._id}>
-                                {student.username} 
+                                {student.username.toUpperCase()} 
                             </li>
                         ))}
                     </ul>

@@ -19,7 +19,7 @@ function Java() {
                     <ul>
                         {javaStackStudents.map(student => (
                             <li key={student._id}>
-                                {student.username} 
+                                {student.username.toUpperCase()} 
                             </li>
                         ))}
                     </ul>

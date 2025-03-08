@@ -149,13 +149,13 @@
 .adminboard-search-col {
   display: flex;
   align-items: center;
-  gap: 10px; /* Space between search input and button */
+  gap: 10px; 
   width: 100%;
   max-width: 600px;
 }
 
 .adminboard-search-input {
-  flex: 1; /* Make the input take up remaining space */
+  flex: 1;
 }
 
 .adminboard-search-col button {

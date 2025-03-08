@@ -1,4 +1,4 @@
-/* Main container for the tech cards */
+
 .tech-container {
     display: flex;
     flex-wrap: wrap;
@@ -8,7 +8,7 @@
     background-color: #f8f9fa;
   }
   
-  /* Individual card styling */
+ 
   .tech-card {
     width: 280px;
     height: 350px;
@@ -23,10 +23,10 @@
     overflow: hidden;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     position: relative;
-    padding-top: 50px; /* Space for the title */
+    padding-top: 50px;
   }
   
-  /* Card header positioned above the card */
+
   .tech-title {
     position: absolute;
     top: 0;
@@ -42,37 +42,13 @@
     text-align: center;
   }
   
-  /* Content section with scrollable text */
-  .tech-content {
-    flex: 1;
-    padding: 16px;
-    font-size: 14px;
-    line-height: 1.6;
-    overflow-y: auto;
-    max-height: 200px;
-    scrollbar-width: thin;
-    scrollbar-color: #007bff #e0e0e0;
-  }
-  
-  /* Custom scrollbar for WebKit browsers */
-  .tech-content::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  .tech-content::-webkit-scrollbar-thumb {
-    background: #007bff;
-    border-radius: 6px;
-  }
-  
-  /* Scroll button container */
+
   .scroll-buttons {
     display: flex;
     justify-content: center;
     gap: 10px;
     padding: 12px;
   }
-  
-  /* Scroll buttons */
   .scroll-button {
     background: #007bff;
     color: white;
