@@ -146,6 +146,50 @@
 .adminboard-save-btn:active {
   transform: translateY(0);
 }
+.adminboard-search-col {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between search input and button */
+  width: 100%;
+  max-width: 600px;
+}
+
+.adminboard-search-input {
+  flex: 1; /* Make the input take up remaining space */
+}
+
+.adminboard-search-col button {
+  white-space: nowrap;
+  padding: 10px 15px;
+  background: linear-gradient(135deg, #6a11cb 0%, #8a2be2 100%);
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.adminboard-search-col button:hover {
+  background: linear-gradient(135deg, #5a0cb1 0%, #7a1bd2 100%);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 576px) {
+  .adminboard-search-col {
+    flex-direction: row;
+    gap: 5px;
+  }
+
+  .adminboard-search-input {
+    width: 100%;
+  }
+
+  .adminboard-search-col button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
 
 /* Responsive styles */
 @media (max-width: 992px) {
