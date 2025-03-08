@@ -5,6 +5,8 @@ import "./Adminboard.css"
 import { useNavigate } from "react-router-dom"
 import Reactc from "../Coheart/Reactc"
 import Angular from "../Coheart/Angular"
+
+import Mean from "../Coheart/Mean"
 function Adminboard() {
   const { data: users, error, isLoading } = useGetUsersQuery()
   const [addPayment] = useAddPaymentMutation()
@@ -166,6 +168,8 @@ function Adminboard() {
       </div>
       <Reactc></Reactc>
       <Angular></Angular>
+      <MEAN></MEAN>
+      <MERN></MERN>
     </div>
   )
 }
