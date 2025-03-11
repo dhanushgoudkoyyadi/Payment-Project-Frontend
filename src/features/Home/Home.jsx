@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import { useGetOneQuery } from '../../service/Leads';
 import Coursedetails from './Coursedetails';
 import PaymentDetails from './Paymentdetails';
@@ -13,12 +13,16 @@ function Home() {
     const navigate = useNavigate();
     const { data: user, error, isLoading } = useGetOneQuery(userId, { skip: !userId });
 
-   
-     const registeredUser = user || {};
+
+    const registeredUser = user || {};
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/Login');
+    };
+    const handleTech = () => {
+        navigate('/Tech');
+
     };
 
     if (isLoading) return <div className="loading">Loading...</div>;
@@ -26,25 +30,29 @@ function Home() {
 
     return (
         <div className="home-container">
-            {/* Navbar */}
+
             <nav className="custom-navbar">
                 <Link to="/" className="brand-name">Edupoly</Link>
-                <button onClick={handleLogout} className="logout-button">Log Out</button>
+                <div className="navbar-buttons">
+                    <button onClick={handleTech} className="add-tech-button">Add Tech</button>
+                    <button onClick={handleLogout} className="logout-button">Log Out</button>
+                </div>
             </nav>
 
-            {/* User Info */}
-            
+
+
             <div>
-            <div className="user-info-container">
-                <h2 className="user-info">Welcome {registeredUser.username?.toUpperCase()}</h2>
-                <h3 className="email">Email: {registeredUser.email}</h3>
-            </div>
-            {/* Course and Payment Details */}
-            <div className="details-container">
-                
-                <Coursedetails />
-                <PaymentDetails />
-            </div>
+                <div className="user-info-container">
+                    <h2 className="user-info">Welcome {registeredUser.username?.toUpperCase()}</h2>
+                    <h3 className="email">Email: {registeredUser.email}</h3>
+                </div>
+
+                <div className="details-container">
+
+                    <Coursedetails />
+                    <PaymentDetails />
+
+                </div>
             </div>
         </div>
     );

@@ -10,7 +10,7 @@ import Paymentdetails from './features/Home/Paymentdetails';
 import FileUpload from './features/Student-Details/StudentPayment';
 import Home from "./features/Home/Home"
 import AddCourse from './features/Student-Details/AddCourse';
-import Tech from './features/Cohorts/Tech';
+import Tech from './features/Cohort/Tech';
 function App() {
   return (
     <Router>
@@ -26,7 +26,7 @@ function App() {
         <Route path="/FileUpload" element={<FileUpload/>}/>
         <Route path="/Home" element={<Home/>}/>
         <Route path="/AddCourse" element={<AddCourse/>}/>
-        <Route path="/cohorts" element={<Tech></Tech>}></Route>
+        <Route path="/Tech" element={<Tech/>}></Route>
        
         
         

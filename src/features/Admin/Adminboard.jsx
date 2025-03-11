@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 
 function Adminboard() {
   const { data: users, error, isLoading } = useGetUsersQuery()
+  console.log(users)
   const [addPayment] = useAddPaymentMutation()
   const [paymentValues, setPaymentValues] = useState({})
   const [paymentTypes, setPaymentTypes] = useState({})
@@ -164,6 +165,7 @@ function Adminboard() {
           )
         })}
       </div>
+      
     </div>
   )
 }

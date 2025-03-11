@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useAddupMutation,useGetOneQuery} from '../../service/Leads';
-import {jwtDecode} from 'jwt-decode';
+import { useAddupMutation, useGetOneQuery } from '../../service/Leads';
+import { jwtDecode } from 'jwt-decode';
 import './AddCourse.css';
 
 
@@ -10,15 +10,15 @@ function AddCourse() {
   const [selectedCourse, setSelectedCourse] = useState('');
   const [addup] = useAddupMutation();
 
-  const token = localStorage.getItem("token"); 
-      const userId = token ? jwtDecode(token).id : null;
-      console.log(userId)
-    const { data: user, error, isLoading } = useGetOneQuery(userId, { skip: !userId });
-  
-    if (!userId) return <p>Please log in</p>;
-    if (isLoading) return <p>Loading...</p>;
-    if (error) return <p>Error fetching user data</p>;
-    console.log(user);
+  const token = localStorage.getItem("token");
+  const userId = token ? jwtDecode(token).id : null;
+  console.log(userId)
+  const { data: user, error, isLoading } = useGetOneQuery(userId, { skip: !userId });
+
+  if (!userId) return <p>Please log in</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error fetching user data</p>;
+  console.log(user);
 
   const validateForm = () => {
     if (!mobileNumber || !email || !selectedCourse) {
@@ -47,8 +47,6 @@ function AddCourse() {
 
     try {
       const formData = {
-        mobileNumber,
-        email,
         selectedCourse,
       };
 
@@ -60,7 +58,7 @@ function AddCourse() {
       }
       if (user.mobileNumber !== mobileNumber) {
         return alert("Mobile number mismatch");
-    }
+      }
 
       const decodedToken = jwtDecode(token);
       formData.userId = decodedToken.id || decodedToken._id;
