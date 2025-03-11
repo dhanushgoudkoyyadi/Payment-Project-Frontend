@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { buildQueries } from '@testing-library/dom';
 
 export const PaymentApi = createApi({
   reducerPath: 'paymentapi',
@@ -60,6 +61,23 @@ export const PaymentApi = createApi({
         formData: true,
       })
     }),
+    addCohort: build.mutation({
+      query: ({ title }) => ({
+        url: `/addcohort`,
+        method: 'POST',
+        body: {title} ,
+      }),
+    }),
+    getAllCohortsLists:build.query({
+      query:()=>"/listcohorts",
+    }),
+    addStudent:build.mutation({
+      query:({cohortTitle,studentName})=>({
+        url:'/addstudent',
+        method:"POST",
+        body:{cohortTitle,name:studentName}
+      }),
+    }),
 
 
 
@@ -74,5 +92,8 @@ export const {
   useGetUsersQuery,
   useAddPaymentMutation,
   useGetOneQuery,
-  useAddupMutation
+  useAddupMutation,
+  useAddCohortMutation,
+  useGetAllCohortsListsQuery,
+ useAddStudentMutation,
 } = PaymentApi;
