@@ -4,13 +4,28 @@ import {
   useAddCohortMutation,
   useGetAllCohortsListsQuery,
   useAddStudentMutation,
+  useRemoveStudentMutation, // Import the remove mutation
 } from "../../service/Leads.js";
 import "./Techs.css"; // Updated CSS import
 
 function Techs() {
   const [addCohort] = useAddCohortMutation();
   const [addStudent] = useAddStudentMutation();
+  const [removeStudent] = useRemoveStudentMutation(); // Use mutation for removing student
   const { data: cohorts, refetch } = useGetAllCohortsListsQuery();
+
+  // Remove student function
+  const handleRemoveStudent = async (cohortTitle, studentName) => {
+    
+    try {
+      await removeStudent({ cohortTitle, studentName }).unwrap();
+      alert("Student removed successfully!");
+      refetch(); // Refetch data to update UI
+    } catch (error) {
+      console.error("Error removing student:", error);
+      alert("Error removing student. Please try again.");
+    }
+  };
 
   return (
     <div className="techs-container">
@@ -93,7 +108,15 @@ function Techs() {
               {cohort.students?.length > 0 ? (
                 cohort.students.map((student, index) => (
                   <li key={index} className="techs-student-item">
-                    {student.name}
+                    {student.name} &nbsp;
+                    <button
+                      onClick={() =>
+                        handleRemoveStudent(cohort.title, student.name)
+                      }
+                      className="techs-student-button"
+                    >
+                      Remove
+                    </button>
                   </li>
                 ))
               ) : (

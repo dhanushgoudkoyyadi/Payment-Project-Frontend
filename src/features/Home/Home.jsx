@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import { useGetOneQuery } from '../../service/Leads';
 import Coursedetails from './Coursedetails';
 import PaymentDetails from './Paymentdetails';
-
+import Cohortdetails from './Cohortdetails';
 import './Home.css';
 
 function Home() {
@@ -51,7 +51,7 @@ function Home() {
 
                     <Coursedetails />
                     <PaymentDetails />
-
+                    <Cohortdetails />
                 </div>
             </div>
         </div>

@@ -25,6 +25,17 @@
     display: flex;
     gap: 15px; /* Space between buttons */
 }
+.user-info-container{
+    margin: 100px;
+}
+.details-container {
+    display: flex; /* Enables flexbox */
+    flex-direction: row; /* Ensures components are side by side */
+    justify-content: space-between; /* Adds spacing between components */
+    align-items: flex-start; /* Aligns components at the top */
+    gap: 20px; /* Adds space between the components */
+    padding: 20px; /* Optional: Adds padding around the container */
+}
 
 /* Individual button styles */
 .logout-button {
@@ -43,7 +54,7 @@
 }
 
 .add-tech-button {
-    background-color: #6a1b9a; /* Darker purple */
+    background-color: #7c43bd; /* Darker purple */
     color: #ffffff;
     border: none;
     padding: 10px 16px;
