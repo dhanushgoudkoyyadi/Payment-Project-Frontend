@@ -101,11 +101,8 @@ export const {
   useAddPaymentMutation,
   useGetOneQuery,
   useAddupMutation,
-<<<<<<< HEAD
   useAddCohortMutation,
   useGetAllCohortsListsQuery,
  useAddStudentMutation,
-=======
   useAddTechMutation
->>>>>>> 15633a72094741b00708822cd1bef0530c92f304
 } = PaymentApi;
