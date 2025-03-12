@@ -99,3 +99,14 @@
 .techs-no-students {
   color: gray;
 }
+i {
+  font-size: 1.5rem; /* Make icon bigger */
+  cursor: pointer; /* Make it clickable */
+  color: #007bff; /* Blue color */
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+i:hover {
+  color: #0056b3; /* Darker blue on hover */
+}

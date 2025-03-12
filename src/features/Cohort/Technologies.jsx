@@ -90,11 +90,13 @@ function Techs() {
       <h2 className="techs-cohort-title">Cohort List</h2>
       <div className="techs-cohort-grid">
         {cohorts?.map((cohort) => (
-          <div key={cohort._id} className="techs-cohort-card">
-            <h3>{cohort.title.toUpperCase()}</h3>
-            <button onClick={() => handleUpdate(cohort._id, cohort.title)}>Edit</button>
-            <button onClick={() => handleDeleteCohort(cohort._id)}>Delete</button>
-
+          <div className="techs-cohort-header">
+          <h3>{cohort.title.toUpperCase()}</h3>
+        
+            <i className="bi bi-pencil" onClick={() => handleUpdate(cohort._id, cohort.title)}></i>
+            <i className="bi bi-trash3-fill text-danger" onClick={() => handleDeleteCohort(cohort._id)}></i>
+          
+  
             {/* Add Student Form */}
             <Formik
               initialValues={{ studentName: "" }}
