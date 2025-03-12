@@ -4,7 +4,9 @@ import {
   useAddCohortMutation,
   useGetAllCohortsListsQuery,
   useAddStudentMutation,
-  useRemoveStudentMutation, 
+  useRemoveStudentMutation,
+  useDeleteCohortMutation, 
+  useUpdateCohortMutation
 } from "../../service/Leads.js";
 import "./Techs.css"; 
 
@@ -13,8 +15,10 @@ function Techs() {
   const [addStudent] = useAddStudentMutation();
   const [removeStudent] = useRemoveStudentMutation(); 
   const { data: cohorts, refetch } = useGetAllCohortsListsQuery();
+  const [deleteCohort] = useDeleteCohortMutation();
+  const [updateCohort] = useUpdateCohortMutation();
+
   const handleRemoveStudent = async (cohortTitle, studentName) => {
-    
     try {
       await removeStudent({ cohortTitle, studentName }).unwrap();
       alert("Student removed successfully!");
@@ -25,9 +29,32 @@ function Techs() {
     }
   };
 
+  const handleDeleteCohort = async (id) => {
+    try {
+      await deleteCohort({ id }).unwrap();
+      refetch();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  async function handleUpdate(id, currentTitle) {
+    const newTitle = prompt("Enter new Cohort name", currentTitle);
+    
+    if (newTitle && newTitle.trim() !== "") {
+      try {
+        await updateCohort({ id, title: newTitle }).unwrap();
+        alert("Cohort updated successfully!");
+        refetch();
+      } catch (error) {
+        console.error("Error updating cohort:", error);
+        alert("Error updating cohort. Please try again.");
+      }
+    }
+  }
+
   return (
     <div className="techs-container">
-  
       <div className="techs-add-cohort">
         <h2>Add Cohort</h2>
         <Formik
@@ -53,9 +80,7 @@ function Techs() {
                 placeholder="Enter cohort name"
                 className="techs-input"
               />
-              <button type="submit" className="techs-button">
-                Save
-              </button>
+              <button type="submit" className="techs-button">Save</button>
             </Form>
           )}
         </Formik>
@@ -64,9 +89,11 @@ function Techs() {
       {/* Cohort List */}
       <h2 className="techs-cohort-title">Cohort List</h2>
       <div className="techs-cohort-grid">
-        {cohorts?.map((cohort, index) => (
-          <div key={index} className="techs-cohort-card">
-            <h3>{cohort.title}</h3>
+        {cohorts?.map((cohort) => (
+          <div key={cohort._id} className="techs-cohort-card">
+            <h3>{cohort.title.toUpperCase()}</h3>
+            <button onClick={() => handleUpdate(cohort._id, cohort.title)}>Edit</button>
+            <button onClick={() => handleDeleteCohort(cohort._id)}>Delete</button>
 
             {/* Add Student Form */}
             <Formik
@@ -74,7 +101,7 @@ function Techs() {
               validate={(values) => {
                 const errors = {};
                 if (!values.studentName.trim()) {
-                  errors.studentName =alert("Student name is required");
+                  errors.studentName = alert("Student name is required");
                 }
                 return errors;
               }}
@@ -101,9 +128,7 @@ function Techs() {
                     placeholder="Enter student name"
                     className="techs-student-input"
                   />
-                  <button type="submit" className="techs-student-button">
-                    Add
-                  </button>
+                  <button type="submit" className="techs-student-button">Add</button>
                 </Form>
               )}
             </Formik>
@@ -115,9 +140,7 @@ function Techs() {
                   <li key={index} className="techs-student-item">
                     {student.name} &nbsp;
                     <button
-                      onClick={() =>
-                        handleRemoveStudent(cohort.title, student.name)
-                      }
+                      onClick={() => handleRemoveStudent(cohort.title, student.name)}
                       className="techs-student-button"
                     >
                       Remove

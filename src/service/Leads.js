@@ -94,6 +94,19 @@ export const PaymentApi = createApi({
         body: { cohortTitle, studentName },
       }),
     }),
+    deleteCohort:build.mutation({
+      query:({id})=>({
+        url:`/cohorts/${id}`,
+        method:'DELETE',
+      })
+    }),
+    updateCohort:build.mutation({
+      query:({id,title})=>({
+        url:`/cohortupdate/${id}`,
+        method:'PUT',
+        body:{title},
+      })
+    })
 
 
   }),
@@ -112,6 +125,8 @@ export const {
   useGetAllCohortsListsQuery,
  useAddStudentMutation,
   useAddTechMutation,
-  useRemoveStudentMutation
+  useRemoveStudentMutation,
+  useDeleteCohortMutation,
+  useUpdateCohortMutation
   
 } = PaymentApi;
