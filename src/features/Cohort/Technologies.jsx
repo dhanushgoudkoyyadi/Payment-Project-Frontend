@@ -4,23 +4,21 @@ import {
   useAddCohortMutation,
   useGetAllCohortsListsQuery,
   useAddStudentMutation,
-  useRemoveStudentMutation, // Import the remove mutation
+  useRemoveStudentMutation, 
 } from "../../service/Leads.js";
-import "./Techs.css"; // Updated CSS import
+import "./Techs.css"; 
 
 function Techs() {
   const [addCohort] = useAddCohortMutation();
   const [addStudent] = useAddStudentMutation();
-  const [removeStudent] = useRemoveStudentMutation(); // Use mutation for removing student
+  const [removeStudent] = useRemoveStudentMutation(); 
   const { data: cohorts, refetch } = useGetAllCohortsListsQuery();
-
-  // Remove student function
   const handleRemoveStudent = async (cohortTitle, studentName) => {
     
     try {
       await removeStudent({ cohortTitle, studentName }).unwrap();
       alert("Student removed successfully!");
-      refetch(); // Refetch data to update UI
+      refetch(); 
     } catch (error) {
       console.error("Error removing student:", error);
       alert("Error removing student. Please try again.");
@@ -29,7 +27,7 @@ function Techs() {
 
   return (
     <div className="techs-container">
-      {/* Add Cohort Section */}
+  
       <div className="techs-add-cohort">
         <h2>Add Cohort</h2>
         <Formik
@@ -73,6 +71,13 @@ function Techs() {
             {/* Add Student Form */}
             <Formik
               initialValues={{ studentName: "" }}
+              validate={(values) => {
+                const errors = {};
+                if (!values.studentName.trim()) {
+                  errors.studentName =alert("Student name is required");
+                }
+                return errors;
+              }}
               onSubmit={async (values, { resetForm }) => {
                 try {
                   await addStudent({
