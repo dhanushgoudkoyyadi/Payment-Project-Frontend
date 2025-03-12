@@ -87,6 +87,13 @@ export const PaymentApi = createApi({
         formData: true,
       })
     }),
+    RemoveStudent: build.mutation({
+      query: ({ cohortTitle, studentName }) => ({
+        url: `/removeStudent`,
+        method: "DELETE",
+        body: { cohortTitle, studentName },
+      }),
+    }),
 
 
   }),
@@ -101,5 +108,10 @@ export const {
   useAddPaymentMutation,
   useGetOneQuery,
   useAddupMutation,
-  useAddTechMutation
+  useAddCohortMutation,
+  useGetAllCohortsListsQuery,
+ useAddStudentMutation,
+  useAddTechMutation,
+  useRemoveStudentMutation
+  
 } = PaymentApi;

@@ -37,8 +37,8 @@
     padding: 12px 20px;
     font-size: 16px;
     font-weight: bold;
-    background-color: #00ff80;
-    color: #1a1a4b;
+    background-color: #7c43bd;
+    color: whitesmoke;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -46,7 +46,7 @@
 }
 
 .button:hover {
-    background-color: #4d8af0;
+    background-color: #7c43bd;
     color: #ffffff;
 }
 

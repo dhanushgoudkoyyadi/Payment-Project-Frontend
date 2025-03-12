@@ -1,5 +1,10 @@
-/* Centering the Add Cohort Form */
-.add-cohort-container {
+/* Container */
+.techs-container {
+  padding: 20px;
+}
+
+/* Add Cohort Section */
+.techs-add-cohort {
   background-color: purple;
   color: white;
   padding: 20px;
@@ -9,8 +14,8 @@
   text-align: center;
 }
 
-/* Input & Button Styling for Add Cohort */
-.add-cohort-container input {
+/* Input & Button Styling */
+.techs-input {
   padding: 8px;
   border-radius: 5px;
   border: none;
@@ -18,7 +23,7 @@
   width: 60%;
 }
 
-.add-cohort-container button {
+.techs-button {
   padding: 8px 15px;
   border-radius: 5px;
   border: none;
@@ -29,13 +34,13 @@
 }
 
 /* Cohort List Section */
-.cohort-list-container {
+.techs-cohort-title {
   margin-top: 30px;
   text-align: center;
 }
 
 /* Cohort Cards Grid */
-.cohort-grid {
+.techs-cohort-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 15px;
@@ -44,7 +49,7 @@
 }
 
 /* Individual Cohort Card */
-.cohort-card {
+.techs-cohort-card {
   border: 1px solid #ccc;
   padding: 15px;
   border-radius: 10px;
@@ -54,26 +59,26 @@
 }
 
 /* Cohort Title */
-.cohort-card h3 {
+.techs-cohort-card h3 {
   color: purple;
   text-align: center;
 }
 
 /* Student Input & Button */
-.student-form {
+.techs-student-form {
   display: flex;
   gap: 5px;
   margin-bottom: 10px;
 }
 
-.student-form input {
+.techs-student-input {
   padding: 6px;
   border-radius: 5px;
   border: 1px solid #ccc;
   flex: 1;
 }
 
-.student-form button {
+.techs-student-button {
   padding: 6px 10px;
   border-radius: 5px;
   border: none;
@@ -83,14 +88,14 @@
 }
 
 /* Student List */
-.student-list {
+.techs-student-list {
   padding-left: 15px;
 }
 
-.student-list li {
+.techs-student-item {
   padding: 3px 0;
 }
 
-.student-list li.no-students {
+.techs-no-students {
   color: gray;
 }

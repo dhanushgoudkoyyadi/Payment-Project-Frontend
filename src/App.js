@@ -11,6 +11,7 @@ import FileUpload from './features/Student-Details/StudentPayment';
 import Home from "./features/Home/Home"
 import AddCourse from './features/Student-Details/AddCourse';
 import Tech from './features/Cohort/Tech';
+import Techs from './features/Cohort/Technologies';
 function App() {
   return (
     <Router>
@@ -27,6 +28,8 @@ function App() {
         <Route path="/Home" element={<Home/>}/>
         <Route path="/AddCourse" element={<AddCourse/>}/>
         <Route path="/Tech" element={<Tech/>}></Route>
+        <Route path="/cohorts" element={<Techs/>}></Route>
+        
        
         
         
