@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { buildQueries } from '@testing-library/dom';
+//import { buildQueries } from '@testing-library/dom';
 
 export const PaymentApi = createApi({
   reducerPath: 'paymentapi',
@@ -101,11 +101,5 @@ export const {
   useAddPaymentMutation,
   useGetOneQuery,
   useAddupMutation,
-<<<<<<< HEAD
-  useAddCohortMutation,
-  useGetAllCohortsListsQuery,
- useAddStudentMutation,
-=======
   useAddTechMutation
->>>>>>> 15633a72094741b00708822cd1bef0530c92f304
 } = PaymentApi;
