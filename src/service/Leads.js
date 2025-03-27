@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-//import { buildQueries } from '@testing-library/dom';
 
 export const PaymentApi = createApi({
   reducerPath: 'paymentapi',
@@ -24,7 +23,6 @@ export const PaymentApi = createApi({
     getUsers: build.query({
       query: () => "/users",
     }),
-
     login: build.mutation({
       query: (credentials) => ({
         url: '/login',
@@ -39,7 +37,6 @@ export const PaymentApi = createApi({
         body: { userId, amount },
       }),
     }),
-
     add: build.mutation({
       query: (formData) => ({
         url: '/details',
@@ -48,8 +45,6 @@ export const PaymentApi = createApi({
         formData: true,
       }),
     }),
-
-    
     getOne: build.query({
       query: (userId) => `/users/${userId}`,
     }),
@@ -65,20 +60,19 @@ export const PaymentApi = createApi({
       query: ({ title }) => ({
         url: `/addcohort`,
         method: 'POST',
-        body: {title} ,
+        body: {title},
       }),
     }),
-    getAllCohortsLists:build.query({
-      query:()=>"/listcohorts",
+    getAllCohortsLists: build.query({
+      query: () => "/listcohorts",
     }),
-    addStudent:build.mutation({
-      query:({cohortTitle,studentName})=>({
-        url:'/addstudent',
-        method:"POST",
-        body:{cohortTitle,name:studentName}
+    addStudent: build.mutation({
+      query: ({cohortTitle, studentName}) => ({
+        url: '/addstudent',
+        method: "POST",
+        body: {cohortTitle, name: studentName}
       }),
     }),
-
     addTech: build.mutation({
       query: (formData) => ({
         url: '/addtech',
@@ -94,31 +88,32 @@ export const PaymentApi = createApi({
         body: { cohortTitle, studentName },
       }),
     }),
-    deleteCohort:build.mutation({
-      query:({id})=>({
-        url:`/cohorts/${id}`,
-        method:'DELETE',
+    deleteCohort: build.mutation({
+      query: ({id}) => ({
+        url: `/cohorts/${id}`,
+        method: 'DELETE',
       })
     }),
-    updateCohort:build.mutation({
-      query:({id,title})=>({
-        url:`/cohortupdate/${id}`,
-        method:'PUT',
-        body:{title},
+    updateCohort: build.mutation({
+      query: ({id, title}) => ({
+        url: `/cohortupdate/${id}`,
+        method: 'PUT',
+        body: {title},
       })
     }),
-
-   AddStudentsToCohort: build.mutation({
-      query: ({ fromCohortId, toCohortId }) => ({
+    // Updated AddStudentsToCohort mutation
+    AddStudentsToCohort: build.mutation({
+      query: ({ toCohortId, studentNames, fromCohortId }) => ({
         url: "/add-students",
         method: "POST",
-        body: { fromCohortId, toCohortId },
+        body: { 
+          toCohortId, 
+          studentNames, 
+          fromCohortId 
+        },
       }),
     }),
-
-
   }),
-
 });
 
 export const {
@@ -131,11 +126,10 @@ export const {
   useAddupMutation,
   useAddCohortMutation,
   useGetAllCohortsListsQuery,
- useAddStudentMutation,
+  useAddStudentMutation,
   useAddTechMutation,
   useRemoveStudentMutation,
   useDeleteCohortMutation,
   useUpdateCohortMutation,
   useAddStudentsToCohortMutation,
-  
 } = PaymentApi;
