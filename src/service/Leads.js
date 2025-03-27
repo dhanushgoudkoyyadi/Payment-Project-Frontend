@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const PaymentApi = createApi({
   reducerPath: 'paymentapi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5557/',
+    baseUrl: 'http://localhost:6788/',
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('token');
       if (token) {
@@ -106,7 +106,15 @@ export const PaymentApi = createApi({
         method:'PUT',
         body:{title},
       })
-    })
+    }),
+
+   AddStudentsToCohort: build.mutation({
+      query: ({ fromCohortId, toCohortId }) => ({
+        url: "/add-students",
+        method: "POST",
+        body: { fromCohortId, toCohortId },
+      }),
+    }),
 
 
   }),
@@ -127,6 +135,7 @@ export const {
   useAddTechMutation,
   useRemoveStudentMutation,
   useDeleteCohortMutation,
-  useUpdateCohortMutation
+  useUpdateCohortMutation,
+  useAddStudentsToCohortMutation,
   
 } = PaymentApi;

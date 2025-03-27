@@ -12,6 +12,7 @@ import Home from "./features/Home/Home"
 import AddCourse from './features/Student-Details/AddCourse';
 import Tech from './features/Cohort/Tech';
 import Techs from './features/Cohort/Technologies';
+import AddCohorts from './features/Cohort/AddCohorts';
 function App() {
   return (
     <Router>
@@ -29,6 +30,8 @@ function App() {
         <Route path="/AddCourse" element={<AddCourse/>}/>
         <Route path="/Tech" element={<Tech/>}></Route>
         <Route path="/cohorts" element={<Techs/>}></Route>
+        <Route path="/AddCohorts" element={<AddCohorts/>}></Route>
+
         
        
         
