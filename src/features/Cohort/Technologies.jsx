@@ -4,32 +4,63 @@ import {
   useAddCohortMutation,
   useGetAllCohortsListsQuery,
   useAddStudentMutation,
-  useRemoveStudentMutation, // Import the remove mutation
+  useRemoveStudentMutation,
+  useDeleteCohortMutation, 
+  useUpdateCohortMutation
 } from "../../service/Leads.js";
-import "./Techs.css"; // Updated CSS import
+import "./Techs.css"; 
 
 function Techs() {
   const [addCohort] = useAddCohortMutation();
   const [addStudent] = useAddStudentMutation();
-  const [removeStudent] = useRemoveStudentMutation(); // Use mutation for removing student
+  const [removeStudent] = useRemoveStudentMutation(); 
   const { data: cohorts, refetch } = useGetAllCohortsListsQuery();
+  const [deleteCohort] = useDeleteCohortMutation();
+  const [updateCohort] = useUpdateCohortMutation();
 
-  // Remove student function
   const handleRemoveStudent = async (cohortTitle, studentName) => {
-    
     try {
       await removeStudent({ cohortTitle, studentName }).unwrap();
       alert("Student removed successfully!");
-      refetch(); // Refetch data to update UI
+      refetch(); 
     } catch (error) {
       console.error("Error removing student:", error);
       alert("Error removing student. Please try again.");
     }
   };
 
+  const handleDeleteCohort = async (id) => {
+    try {
+      await deleteCohort({ id }).unwrap();
+      refetch();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  async function handleUpdate(id, currentTitle) {
+    const newTitle = prompt("Enter new Cohort name", currentTitle);
+    
+    if (newTitle && newTitle.trim() !== "") {
+      try {
+        await updateCohort({ id, title: newTitle }).unwrap();
+        alert("Cohort updated successfully!");
+        refetch();
+      } catch (error) {
+        console.error("Error updating cohort:", error);
+        alert("Error updating cohort. Please try again.");
+      }
+    }
+  }
+function handleDragstart(ev){
+  ev.dataTransfer.setData("abc",ev.target.value)
+}
+
+function handleDrop(ev){
+ console.log(ev.dataTransfer.getData("abc"));
+}
   return (
     <div className="techs-container">
-      {/* Add Cohort Section */}
       <div className="techs-add-cohort">
         <h2>Add Cohort</h2>
         <Formik
@@ -55,9 +86,7 @@ function Techs() {
                 placeholder="Enter cohort name"
                 className="techs-input"
               />
-              <button type="submit" className="techs-button">
-                Save
-              </button>
+              <button type="submit" className="techs-button">Save</button>
             </Form>
           )}
         </Formik>
@@ -66,13 +95,22 @@ function Techs() {
       {/* Cohort List */}
       <h2 className="techs-cohort-title">Cohort List</h2>
       <div className="techs-cohort-grid">
-        {cohorts?.map((cohort, index) => (
-          <div key={index} className="techs-cohort-card">
-            <h3>{cohort.title}</h3>
+        {cohorts?.map((cohort) => (
+          <div key={cohort._id} className="techs-cohort-card">
+            <h3>{cohort.title.toUpperCase()}</h3>
+            <button onClick={() => handleUpdate(cohort._id, cohort.title)}>Edit</button>
+            <button onClick={() => handleDeleteCohort(cohort._id)}>Delete</button>
 
             {/* Add Student Form */}
             <Formik
               initialValues={{ studentName: "" }}
+              validate={(values) => {
+                const errors = {};
+                if (!values.studentName.trim()) {
+                  errors.studentName = alert("Student name is required");
+                }
+                return errors;
+              }}
               onSubmit={async (values, { resetForm }) => {
                 try {
                   await addStudent({
@@ -96,23 +134,20 @@ function Techs() {
                     placeholder="Enter student name"
                     className="techs-student-input"
                   />
-                  <button type="submit" className="techs-student-button">
-                    Add
-                  </button>
+                  <button type="submit" className="techs-student-button">Add</button>
                 </Form>
               )}
             </Formik>
 
             {/* Display Students */}
-            <ul className="techs-student-list">
+            <ul className="techs-student-mainlist" onDragOver={(ev)=>{ev.preventDefault()}} onDrop={(ev)=>{handleDrop(ev)}}>
+            <ul className="techs-student-list" draggable="true" onDragStart={(event)=>{handleDragstart(event)}} >
               {cohort.students?.length > 0 ? (
                 cohort.students.map((student, index) => (
-                  <li key={index} className="techs-student-item">
+                  <li key={index} className="techs-student-item"  >
                     {student.name} &nbsp;
                     <button
-                      onClick={() =>
-                        handleRemoveStudent(cohort.title, student.name)
-                      }
+                      onClick={() => handleRemoveStudent(cohort.title, student.name)}
                       className="techs-student-button"
                     >
                       Remove
@@ -122,6 +157,7 @@ function Techs() {
               ) : (
                 <li className="techs-no-students">No students added</li>
               )}
+            </ul>
             </ul>
           </div>
         ))}
