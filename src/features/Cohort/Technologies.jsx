@@ -105,7 +105,7 @@ function Techs() {
                     cohortTitle: cohort.title,
                     studentName: values.studentName,
                   }).unwrap();
-                  alert("Student added successfully!");
+                 
                   resetForm();
                   refetch();
                 } catch (error) {

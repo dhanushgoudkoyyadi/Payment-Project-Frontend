@@ -4,7 +4,7 @@ import {
   useGetAllCohortsListsQuery, 
   useAddStudentsToCohortMutation 
 } from "../../service/Leads";
-
+import "./add-cohort.css"
 function AddCohorts() {
   const location = useLocation();
   const initialSourceCohort = location.state?.sourceCohort || null;
