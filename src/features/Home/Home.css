@@ -26,7 +26,17 @@
     gap: 15px; /* Space between buttons */
 }
 .user-info-container{
+    text-align: center;
     margin: 100px;
+}
+.user-info {
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.email {
+    font-weight: bold;
+    font-size: 18px;
 }
 .details-container {
     display: flex; /* Enables flexbox */
