@@ -38,8 +38,6 @@ function AddCohorts() {
       student => selectedStudents[student.name]
     );
 
-    // If all are selected, clear the selection
-    // If not all are selected, select all
     const newSelection = {};
     if (!allCurrentlySelected) {
       sourceCohort.students.forEach(student => {
@@ -71,7 +69,6 @@ function AddCohorts() {
       return;
     }
 
-    // Check if students are already in the target cohort
     const existingStudentNames = currentCohort.students.map(s => s.name);
     const studentsToAdd = studentNames.filter(
       name => !existingStudentNames.includes(name)
@@ -102,7 +99,7 @@ function AddCohorts() {
       setCurrentCohort(null);
       refetch();
     } catch (error) {
-      console.error("❌ Error adding students:", error);
+      console.error(" Error adding students:", error);
       
       if (error.data) {
         setError(error.data.message || "Failed to add students");
