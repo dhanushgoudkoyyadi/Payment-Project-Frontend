@@ -5,6 +5,7 @@ import { useGetOneQuery } from '../../service/Leads';
 import Coursedetails from './Coursedetails';
 import PaymentDetails from './Paymentdetails';
 import Cohortdetails from './Cohortdetails';
+
 import './Home.css';
 
 function Home() {
@@ -18,7 +19,7 @@ function Home() {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        navigate('/Login');
+        navigate('/');
     };
     const handleTech = () => {
         navigate('/Tech');
@@ -52,6 +53,7 @@ function Home() {
                     <Coursedetails />
                     <PaymentDetails />
                     <Cohortdetails />
+                   
                 </div>
             </div>
         </div>

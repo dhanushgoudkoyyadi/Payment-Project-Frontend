@@ -60,17 +60,17 @@ export const PaymentApi = createApi({
       query: ({ title }) => ({
         url: `/addcohort`,
         method: 'POST',
-        body: {title},
+        body: { title },
       }),
     }),
     getAllCohortsLists: build.query({
       query: () => "/listcohorts",
     }),
     addStudent: build.mutation({
-      query: ({cohortTitle, studentName}) => ({
+      query: ({ cohortTitle, studentName }) => ({
         url: '/addstudent',
         method: "POST",
-        body: {cohortTitle, name: studentName}
+        body: { cohortTitle, name: studentName }
       }),
     }),
     addTech: build.mutation({
@@ -89,16 +89,16 @@ export const PaymentApi = createApi({
       }),
     }),
     deleteCohort: build.mutation({
-      query: ({id}) => ({
+      query: ({ id }) => ({
         url: `/cohorts/${id}`,
         method: 'DELETE',
       })
     }),
     updateCohort: build.mutation({
-      query: ({id, title}) => ({
+      query: ({ id, title }) => ({
         url: `/cohortupdate/${id}`,
         method: 'PUT',
-        body: {title},
+        body: { title },
       })
     }),
     // Updated AddStudentsToCohort mutation
@@ -106,13 +106,48 @@ export const PaymentApi = createApi({
       query: ({ toCohortId, studentNames, fromCohortId }) => ({
         url: "/add-students",
         method: "POST",
-        body: { 
-          toCohortId, 
-          studentNames, 
-          fromCohortId 
+        body: {
+          toCohortId,
+          studentNames,
+          fromCohortId
         },
       }),
     }),
+    // Video upload endpoint
+    uploadVideo: build.mutation({
+      query: (formData) => ({
+        url: '/upload-video',
+        method: 'POST',
+        body: formData,
+        formData: true,
+      }),
+    }),
+    // New endpoint to add video to cohort
+    addCohortVideo: build.mutation({
+      query: ({ cohortId, videoUrl, videoTitle, videoType = 'file' }) => ({
+        url: '/cohort-video',
+        method: 'POST',
+        body: { cohortId, videoUrl, videoTitle, videoType },
+      }),
+    }),
+    // Get videos for a specific cohort
+    getCohortVideos: build.query({
+      query: (cohortId) => `/cohort-videos/${cohortId}`,
+    }),
+    // Delete video from cohort
+    deleteCohortVideo: build.mutation({
+      query: ({ cohortId, videoId }) => ({
+        url: `/cohort-video/${cohortId}/${videoId}`,
+        method: 'DELETE',
+      }),
+    }),
+    videoCohorts:build.mutation({
+      query: ({ cohortId, videoId }) => ({
+        url: '/video-cohorts',
+        method: 'POST',
+        body: { cohortId, videoId },
+      }),
+    })
   }),
 });
 
@@ -132,4 +167,8 @@ export const {
   useDeleteCohortMutation,
   useUpdateCohortMutation,
   useAddStudentsToCohortMutation,
+  useUploadVideoMutation,
+  useAddCohortVideoMutation,
+  useGetCohortVideosQuery,
+  useDeleteCohortVideoMutation,
 } = PaymentApi;

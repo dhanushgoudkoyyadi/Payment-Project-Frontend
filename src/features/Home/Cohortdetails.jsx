@@ -1,71 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Coursedetails.css';
-import { useGetOneQuery } from '../../service/Leads';
-
+import { useGetAllCohortsListsQuery, useGetOneQuery } from '../../service/Leads';
 import { jwtDecode } from "jwt-decode";
 
-function Cohortdetails() {
+function Cohortdetail() {
     const token = localStorage.getItem("token");
     const userId = token ? jwtDecode(token).id : null;
     
-    const { data: user, error, isLoading } = useGetOneQuery(userId, { skip: !userId });
+    const { data: user, isLoading: userLoading } = useGetOneQuery(userId, { skip: !userId });
+    const { data: cohorts, isLoading: cohortsLoading } = useGetAllCohortsListsQuery();
     
-    // State to track which technologies are visible
-    const [visibleTechs, setVisibleTechs] = useState([]);
+    const [matchedCohorts, setMatchedCohorts] = useState([]);
     
-    // Get cohort details
-    const cohortUser = user || {};
-    const newCohortDetails = cohortUser?.Technologies || []; // Ensure it's an array
-    
-    // Effect to animate technologies appearing one by one
-    // This is now placed before any conditional returns
+    // Find matching cohorts when data is available
     useEffect(() => {
-        if (newCohortDetails.length > 0) {
-            const timeoutIds = [];
-            
-            newCohortDetails.forEach((_, index) => {
-                const timeoutId = setTimeout(() => {
-                    setVisibleTechs(prev => [...prev, index]);
-                }, 500 * (index + 1)); // Each tech appears after 500ms * index
-                
-                timeoutIds.push(timeoutId);
-            });
-            
-            // Cleanup function to clear all timeouts
-            return () => {
-                timeoutIds.forEach(id => clearTimeout(id));
-            };
+        if (user && cohorts && user.mobileNumber) {
+            // Filter cohorts where student phone number matches
+            const matched = cohorts.filter(cohort => 
+                cohort.students && cohort.students.some(student => 
+                    student.name === user.mobileNumber
+                )
+            );
+            setMatchedCohorts(matched);
         }
-    }, [newCohortDetails.length]); // Only re-run if the length changes
+    }, [user, cohorts]);
     
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error fetching data</div>;
+    if (userLoading || cohortsLoading) return <div>Loading...</div>;
     
     return (
         <div className="container">
-            <h3 className="title">Cohort Details</h3>
-            {(newCohortDetails.length > 0) ? (
+            <h3 className="title">Enrolled Cohorts</h3>
+            
+            {/* Matched Cohorts */}
+            {matchedCohorts.length > 0 ? (
                 <div className="card">
-                    <h5 className="text">
-                        Cohorts :
-                        <br></br>
-                        <ul>
-                            {newCohortDetails.map((cohort, index) => (
-                                <li 
-                                    key={index}
-                                    className={`tech-item ${visibleTechs.includes(index) ? 'visible' : 'hidden'}`}
-                                >
-                                    {cohort.technologies ? cohort.technologies : ''}
-                                </li>
-                            ))}
-                        </ul>
-                    </h5>
+                    <ul className="cohort-list">
+                        {matchedCohorts.map((cohort) => (
+                            <li key={cohort._id} className="cohort-item">
+                                {cohort.title}
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             ) : (
-                <h5 className="course-text">No Course Details Found</h5>
+                <div className="card">
+                    <h5 className="course-text">No enrolled cohorts found</h5>
+                </div>
             )}
         </div>
     );
 }
 
-export default Cohortdetails;
+export default Cohortdetail;
