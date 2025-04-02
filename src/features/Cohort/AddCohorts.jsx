@@ -122,7 +122,7 @@ function AddCohorts() {
 
   return (
     <div className="container p-4">
-      <h2 className="mb-4">Transfer Students Between Cohorts</h2>
+      <h2 className="mb-4">Move Students Between Cohorts</h2>
       
       {error && (
         <div className="alert alert-danger" role="alert">
@@ -233,7 +233,7 @@ function AddCohorts() {
           className="btn btn-primary btn-lg"
           disabled={!currentCohort || selectedCount === 0 || isLoading}
         >
-          {isLoading ? "Transferring..." : "Transfer Selected Students"}
+          {isLoading ? "Transferring..." : " Move Selected Students"}
         </button>
       </div>
     </div>
